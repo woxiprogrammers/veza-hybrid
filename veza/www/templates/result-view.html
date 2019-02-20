@@ -1,0 +1,158 @@
+<ion-view view-title="Time Table" name="time-table" class="touch-effect">
+    <div class="row padding-0">
+        <div class="tabs-striped tabs-color-positive tabs-top">
+            <div class="tabs tab-align-inner">
+                <a class="tab-item margin-top-0">
+                    <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.notification">
+                    <i class="icon ion-notify"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+                    <i class="icon ion-homie"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.message">
+                    <i class="icon ion-message"><span class="badge badge-assertive"></span></i>
+                </a>
+            </div>
+        </div>
+    </div>
+            <div class="bar bar-yellow bar-header margin-top-52">
+                <iion-item class="row">
+                    <div class="row">
+                        <div class="col-10">
+                            <button class="button-clear" ng-click="dashBoard()">
+                                <i class="ion-arrow-left-c button-back-white"></i>
+                            </button>
+                        </div>
+                        <div class="col-70 margin-top-5">
+                            <span class="inner-header">Result</span>
+                        </div>
+                        <div class="col-20" ng-click="showPopup()">
+                            <a><i class="icon ion-android-person-add align-delete-bin" ></i></a>
+                        </div>
+                    </div>
+                </iion-item>
+            </div>
+                <ion-content>
+                    <div class="row margin-top-70">
+                        <div class="col-33 text-center item"><div class="row bar-balanced padding bold font-16">Subjects</div>
+
+                            <div class="row item "><span class=" padding" ng-click="subGraphPopup()"><h2>English</h2></span></div>
+                            <div class="row item "><span class=" padding" ng-click="subGraphPopup()"><h2>Hindi</h2></span></div>
+                            <div class="row item "><span class=" padding" ng-click="subGraphPopup()"><h2>Marathi</h2></span></div>
+                            <div class="row item "><span class=" padding" ng-click="subGraphPopup()"><h2>Geography</h2></span></div>
+                            <div class="row item "><span class=" padding" ng-click="subGraphPopup()"><h2>Science</h2></span></div>
+                            <div class="row item "><span class=" padding" ng-click="subGraphPopup()"><h2>History</h2></span></div>
+                            <div class="row item text-center"><div class="row bar-calm-900 bold font-16 margin-top-5">Total</div></div>
+                        </div>
+                        <div class="col-33 text-center item"><div class="row bar-balanced padding bold font-16" ng-click="testGraphPopup()">Unit-Test</div>
+                            <div class="row item text-center"><span class="text-center padding"><h2>85/100</h2></span></div>
+                            <div class="row item text-center"><span class="text-center padding"><h2>82/100</h2></span></div>
+                            <div class="row item text-center"><span class="text-center padding"><h2>76/100</h2></span></div>
+                            <div class="row item text-center"><span class="text-center padding"><h2>80/100</h2></span></div>
+                            <div class="row item text-center"><span class="text-center padding"><h2>74/100</h2></span></div>
+                            <div class="row item text-center"><span class="text-center padding"><h2>70/100</h2></span></div>
+                            <div class="row item text-center"><div class="row bar-calm-900 bold font-16 margin-top-5">467/600</div></div>
+                        </div>
+                        <div class="col-33 text-center item"><div class="row bar-balanced padding bold font-16" ng-click="testGraphPopup()">Terminal</div>
+                            <div class="row item text-center"><span class="text-center padding"><h2>85/100</h2></span></div>
+                            <div class="row item text-center"><span class="text-center padding"><h2>82/100</h2></span></div>
+                            <div class="row item text-center"><span class="text-center padding"><h2>76/100</h2></span></div>
+                            <div class="row item text-center"><span class="text-center padding"><h2>80/100</h2></span></div>
+                            <div class="row item text-center"><span class="text-center padding"><h2>74/100</h2></span></div>
+                            <div class="row item text-center"><span class="text-center padding"><h2>70/100</h2></span></div>
+                            <div class="row item text-center"><div class="row bar-calm-900 bold font-16 margin-top-5">467/600</div></div>
+                        </div>
+                    </div>
+                </ion-content>
+    <div class="bar bar-footer modal-bottom no-border">
+        <div class="row">
+            <div class="col-25 col-offset-25">
+                <button class="button-clear pre-nxt-button">
+                    <i class="icon ion-chevron-left"></i>
+                </button>
+            </div>
+            <div class="col-25 col-offset-25">
+                <button class="button-clear pre-nxt-button">
+                    <i class="icon ion-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</ion-view>
+
+
+<script id="popup-template.html" type="text/ng-template">
+    <div class="list">
+        <div class="row">
+            <div class="col-33 border-bottom">
+                <select class="item item-input item-select">
+                    <option selected class="padding-top-5">Batch</option>
+                    <option class="padding-top-5">Morning</option>
+                    <option class="padding-top-5">Afternoon</option>
+                    <option class="padding-top-5">Evening</option>
+                </select>
+            </div>
+            <div class="col-33 border-bottom">
+                <select class="item item-input item-select">
+                    <option selected class="padding-top-5">Class</option>
+                    <option class="padding-top-5">Class I</option>
+                    <option class="padding-top-5">Class II</option>
+                    <option class="padding-top-5">Class III</option>
+                </select>
+            </div>
+            <div class="col-33 border-bottom">
+                <select class="item item-input item-select">
+                    <option selected class="padding-top-5">Div</option>
+                    <option class="padding-top-5">Div A</option>
+                    <option class="padding-top-5">Div B</option>
+                    <option class="padding-top-5">Div C</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <label class="item item-input border-bottom">
+                <input type="text" placeholder="+ Select Student" ng-click="openModal()" ng-model="data.studName">
+            </label>
+        </div>
+    </div>
+</script>
+
+<script id="studentCntctlist.html" type="text/ng-template">
+    <div class="modal dialog-modal">
+        <div class="modal-view">
+            <ion-header-bar class="bar-yellow">
+                <div class="row">
+                    <div class="col-50 col-offset-25 col-offset-r-25">
+                        <h3 class="modal-title">Students List</h3>
+                    </div>
+                </div>
+            </ion-header-bar>
+            <ion-content has-bouncing="true">
+                <div class="list">
+                    <ion-item class="contact-list" ng-repeat="contct in contactList">
+                        <div class="row">
+                            <div class="col-75">
+                                <h2><strong>{{contct.Name}}</strong></h2>
+                            </div>
+                        </div>
+                    </ion-item>
+                </div>
+            </ion-content>
+            <div class="bar bar-footer modal-bottom no-border">
+                <div class="row">
+                    <div class="col-25 col-offset-50 text-center">
+                        <label class="modal-bottom-text" ng-click="closeStudentModal()">CANCEL</label>
+                    </div>
+                    <div class="col-25  text-center">
+                        <label class="modal-bottom-text" ng-click="closeStudentModal()">OK</label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</script>
+

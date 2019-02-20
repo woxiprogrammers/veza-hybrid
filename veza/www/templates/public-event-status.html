@@ -1,0 +1,78 @@
+<ion-view view-title="Event" name="event" class="touch-effect">
+    <div class="bar bar-header bar-assertive">
+        <iion-item class="row">
+
+                <div class="col col-10">
+                    <button class="button-clear" ng-click="myGoBack()" >
+                        <i class="ion-arrow-left-c button-back-white"></i>
+                    </button>
+                </div>
+                <div class="col col-50 margin-top-5">
+                    <span class="inner-header">Events Details</span>
+                </div>
+                <div class="row" ng-repeat="event in eventdetailsList">
+                <div class="col-20" ng-if="event.status == 'Draft'">
+                  <a ng-click="draftEventForPublish(event.id)"><button class="button-balanced header-approve" >
+                     Publish
+                    </button>
+                  </a>
+                </div>
+            </div>
+        </iion-item>
+    </div>
+
+    <ion-content ng-class="{expanded:$scope.isExpanded}">
+        <div class="row">
+            <div class="col">
+              <div class="card" ng-repeat="event in eventdetailsList">
+                 <div class="item item-text-wrap">
+                   <span class="pull-right" ng-if="event.status == 'Published'">
+                     <button  class="button button-balanced status-button" ng-disabled="clickStatus" >
+                           {{event.status}}
+                     </button>
+                   </span>
+
+                   <span class="pull-right" ng-if="event.status == 'Pending'">
+                     <button class="button button-assertive status-button" ng-disabled="clickStatus" >
+                           {{event.status}}
+                     </button>
+                   </span>
+
+                   <span class="pull-right" ng-if="event.status == 'Draft'">
+                     <button  class="button button-energized status-button" ng-disabled="clickStatus" >
+                           {{event.status}}
+                     </button>
+                   </span>
+                    <br>
+                    <h2><strong>{{event.title}}</strong></h2>
+                    <h3>
+                      <span>
+                        <i>Created by <strong>{{event.created_by}}</strong> on
+                          <strong> {{event.created_at}}</strong>
+                        </i>
+                      </span>
+                    </h3>
+                  </div>
+                 <div class="item item-text-wrap">
+                   <span><strong>Event From : </strong> {{event.start_date}}</span><br>
+                   <span><strong>Event To : </strong> {{event.end_date}}</span>
+                 </div>
+                 <div class="item item-body">
+                    <img class="full-image" ng-src="{{event.path}}">
+                 </div>
+                 <div class="item item-text-wrap">
+                    <span>{{event.detail}}</span>
+                 </div>
+                 <div class="item item-text-wrap" ng-if="event.status == 'Published'">
+                    <h3>
+                      <span>
+                        <i>Published by <strong>{{event.published_by}}</strong> on
+                          <strong> {{event.published_at}}</strong>
+                        </i>
+                      </span>
+                    </h3>
+                  </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

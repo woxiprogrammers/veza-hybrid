@@ -1,0 +1,100 @@
+<ion-view view-title="Compose Message" name="msgcompose" class="touch-effect">
+    <div class="row padding-0">
+        <div class="tabs-striped tabs-color-positive tabs-top">
+            <div class="tabs tab-align-inner">
+                <a class="tab-item margin-top-0">
+                    <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.notification">
+                    <i class="icon ion-notify"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+                    <i class="icon ion-homie"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.message">
+                    <i class="icon ion-message"><span class="badge badge-assertive"></span></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="bar bar-cool bar-header align-delete-bar">
+        <iion-item class="row">
+            <div class="row">
+                <div class="col-10" ng-click="myGoBack()">
+                    <button class="button-clear">
+                        <i class="ion-arrow-left-c button-back-white"></i>
+                    </button>
+                </div>
+                <div class="col-80 margin-top-5">
+                    <span class="inner-header">Compose Message</span>
+                </div>
+                <div class="col-10" ng-click="sendMessage()">
+                    <a><i class="icon ion-android-send align-delete-bin"></i></a>
+                </div>
+            </div>
+        </iion-item>
+    </div>
+    <ion-content ng-class="{expanded:$scope.isExpanded}" class="margin-top-48 padding-l-r-5">
+        <div class="list">
+            <div class="row">
+                <div class="row border-bottom">
+                    <select class="item item-input item-select" ng-model="selectedRole.role" ng-options="role.name for role in userRoles track by role.id" ng-change="getSelectedRole(selectedRole.role)">
+                        <option value="" ng-disabled="true">Select User Role</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row {{checkRole}}">
+                <div class="col-33 border-bottom">
+                    <select class="item item-input item-select" ng-model="selectedBatch.batch" ng-options="batch.name for batch in batches track by batch.id" ng-change="getClass(selectedBatch.batch)">
+                        <option value="" ng-disabled="true">-Batch-</option>
+                    </select>
+                </div>
+                <div class="col-33 border-right border-bottom">
+                    <select class="item item-input item-select" ng-model="selectedClass.class" ng-options="class.class_name for class in classes track by class.id" ng-change="getDivision(selectedClass.class)">
+                        <option value="" ng-disabled="true">-Class-</option>
+                    </select>
+                </div>
+                <div class="col-33 border-bottom">
+                    <select class="item item-input item-select" ng-model="selectedDivision.division" ng-options="division.division_name for division in divisions track by division.id" ng-change="getStudentList(selectedDivision.division)">
+                        <option value="" ng-disabled="true">-Div-</option>
+                    </select>
+                </div>
+            </div>
+            <label class="item item-input border-bottom" ng-click="openModal()" ng-model="recipient" ng-disabled="checkRecipient">
+                {{recipient}}
+            </label>
+             <label class="item item-input">
+                <textarea ng-model="message" placeholder = "Write {{recipient}} a message..." rows = "10" ng-change="setMessage(message)"></textarea>
+             </label>
+        </div>
+    </ion-content>
+</ion-view>
+<script id="studentCntctlist.html" type="text/ng-template">
+    <div class="modal">
+        <div class="modal-view">
+            <ion-header-bar class="bar-cool">
+                <div class="row">
+                    <div class="col-80">
+                        <h3 class="modal-title">Select Recipient</h3>
+                    </div>
+                    <div class="col-20">
+                        <a><i class="icon ion-close align-delete-bin" ng-click="closeModal()"></i></a>
+                    </div>
+                </div>
+            </ion-header-bar>
+            <ion-content has-bouncing="true">
+              <br>
+                <div class="list">
+                    <ion-item class="contact-list no-border" ng-repeat="contct in contactList">
+                        <div class="row" ng-click="selectRecipient(contct.name, contct.id)">
+                            <div class="col-75">
+                                <strong>{{contct.name}}</strong>
+                            </div>
+                        </div>
+                    </ion-item>
+                </div>
+                <div class = "height-bottom-10 row"></div>
+            </ion-content>
+        </div>
+    </div>
+</script>

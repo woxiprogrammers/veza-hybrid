@@ -1,0 +1,99 @@
+<ion-view view-title="Organisation Name" class="touch-effect">
+    <div class="row">
+        <div class="col-90 col-offset-r-10 bar-header">
+            <img class="title-image float-left" src="img/school-logo.png" />
+            <h1 class="header-title">{{title}}</h1>
+        </div>
+    </div>
+    <div ng-show='{{loading}}' style="background-color:black;height:50px;">
+    </div>
+    <div class="row">
+        <div class="tabs-striped tabs-color-positive tabs-top">
+            <div class="tabs tab-align">
+                <a class="tab-item margin-top-0">
+                    <i class="icon ion-navicon slide-button" ng-click="toggleLeftSideMenu()"></i>
+                </a>
+                <a class="tab-item margin-top-7" ui-sref="app.notification">
+                    <i class="icon ion-notify" ng-click="showAlert()"></i>
+                </a>
+                <a class="tab-item margin-top-7 active">
+                    <i class="icon ion-homie-select"></i>
+                </a>
+                <a class="tab-item margin-top-7" ng-click="viewMessagesList()">
+                    <i class="icon ion-message">
+                        <span class="badge badge-assertive">{{msgCount}}</span>
+                    </i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <ion-content ng-class="{expanded:isExpanded}" overflow-scroll="true" style="margin-bottom: 20%">
+        <ion-scroll style="height: auto">
+            <div class="home-dashboard  margin-bottom-10" style="overflow-y: true;">
+                <div class="row">
+                    <div class="a col-33">
+                        <div class="full-width padding-bottom-text">
+                            <img class="dashboard-icon" src="img/1_announcement_shadow.png" ng-click="NoticeboardView()" />
+                        </div>
+                        <span class="full-width dashboard-text">Notice Board</span>
+                    </div>
+                    <div class="a col-33">
+                        <div class="full-width padding-bottom-text">
+                            <img class="dashboard-icon" src="img/2_homework_shadow.png" ng-click="homeworkView()" />
+                        </div>
+                        <span class="full-width dashboard-text">Homework</span>
+                    </div>
+                    <div class="a col-33">
+                        <div class="full-width padding-bottom-text">
+                            <img class="dashboard-icon" src="img/3_attendance_shadow.png" ng-click="attendanceLanding()" />
+                        </div>
+                        <span class="full-width dashboard-text">Attendance</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="a col-33">
+                        <div class="full-width padding-bottom-text">
+                            <img class="dashboard-icon" src="img/4_events_shadow.png" ng-click="eventlanding()" />
+                        </div>
+                        <span class="full-width dashboard-text">Events</span>
+                    </div>
+                    <div class="a col-33">
+                        <div class="full-width padding-bottom-text">
+                            <img class="dashboard-icon" src="img/5_results_shadow.png" ng-click="resultView()" />
+                        </div>
+                        <span class="full-width dashboard-text">Results</span>
+                    </div>
+                    <div class="a col-33">
+                        <div class="full-width padding-bottom-text">
+                            <img class="dashboard-icon" src="img/6_fees_shadow.png" ng-click="feelanding()" />
+                        </div>
+                        <span class="full-width dashboard-text">Fees</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="a col-33">
+                        <div class="full-width padding-bottom-text">
+                            <img class="dashboard-icon" src="img/timetable.png" ng-click="goToTimetable()" />
+                        </div>
+                        <span class="full-width dashboard-text">Time Table</span>
+                    </div>
+                    <div class="a col-33">
+                        <div class="full-width padding-bottom-text">
+                            <img class="dashboard-icon" src="img/gallery.png" / ng-click="goToGallery()">
+                        </div>
+                        <span class="full-width dashboard-text">Gallery</span>
+                    </div>
+                    <div class="a col-33">
+                        <div class="full-width padding-bottom-text">
+                            <img class="dashboard-icon" src="img/7_about_shadow.png" / ng-click="showAlert()">
+                        </div>
+                        <span class="full-width dashboard-text">About</span>
+                    </div>
+                </div>
+            </div>
+        </ion-scroll>
+    </ion-content>
+    <div class="bar bar-footer footer-bottom">
+        <div class="footer-title">Powered by Veza Version 1.9</div>
+    </div>
+</ion-view>

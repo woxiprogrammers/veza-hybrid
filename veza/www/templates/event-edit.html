@@ -1,0 +1,114 @@
+<ion-view view-title="Create Event" name="eventcreate" class="touch-effect">
+    <div class="row padding-0">
+        <div class="tabs-striped tabs-color-positive tabs-top">
+            <div class="tabs tab-align-inner">
+                <a class="tab-item margin-top-0">
+                    <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.notification">
+                    <i class="icon ion-notify"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+                    <i class="icon ion-homie"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.message">
+                    <i class="icon ion-message"><span class="badge badge-assertive"></span></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="bar bar-event bar-header align-delete-bar">
+        <iion-item class="row">
+            <div class="row">
+                <div class="col-10" ng-click="myGoBack()">
+                    <button class="button-clear">
+                        <i class="ion-arrow-left-c button-back-white"></i>
+                    </button>
+                </div>
+                <div class="col-60 margin-top-5">
+                    <span class="inner-header">Edit Event</span>
+                </div>
+                <div class="col-30" ng-click="updateEvent()">
+                    <button class="button-balanced header-approve">
+                     Update
+                    </button>
+                </div>
+            </div>
+        </iion-item>
+    </div>
+    <ion-content ng-class="{expanded:$scope.isExpanded}" class="margin-top-48 padding-l-r-2">
+      <div class="row">
+          <div class="col">
+            <div class="list" ng-repeat="event in eventData">
+               <label class="item item-input item-floating-label">
+               <span class="input-label">Title : </span>
+                  <input id="eventTitle" ng-model="eventTitle" type="text" placeholder="Write Event title here" ng-change="setEventTitle(eventTitle)">
+               </label>
+
+               <label class="item item-input item-floating-label">
+               <span class="input-label">Event description : </span>
+                  <textarea ng-model="eventDetail" placeholder="Write Event description here" rows = "7" ng-change="setEventDetail(eventDetail)"></textarea>
+               </label>
+
+               <div class="row item">
+                   <div class="col-33 padding-top-10 date-bg"><h3 class="margin-left-1">Start Date : </h3></div>
+                   <input  class="item-input col-67" type="date"  ng-model="startEventTime" value="{{startEventTime}}" min="{{minDate}}"  ng-change="setEventStartDate(startEventTime)" >
+               </div>
+
+               <div class="row item">
+                  <div class="col-33 padding-top-10 date-bg"><h3 class="margin-left-1">End Date : </h3></div>
+                    <input id="endEventTime" class="item-input col-67" type="date" ng-model="endEventTime" value="{{endEventTime}}" min="{{minDate}} " ng-change="setEventEndDate(endEventTime)">
+                  </div>
+              </div>
+              <div class="row item">
+                <div class="col-33 padding-top-10 date-bg"><h2 class="margin-left-2">Upload Image:</h2></div>
+                <input class="item-input col-67" type="file" ng-model="eventImage" ng-change="setImage(eventImage)">
+            </div>
+            <div class="container">
+               <form name="form">
+                 <h3>Single File Selection</h3>
+                 <div class="input-group">
+                      <label for="file">Select File</label>
+                      <input type="file" ng-model="file" name="file" base-sixty-four-input required onLoad="onLoad" maxsize="1000" accept="image/*">
+                      <span class="help-block">
+                        <ul>
+                          <li>required</li>
+                          <li>maxsize = 500</li>
+                          <li>accept = image/*</li>
+                        </ul>
+                      </span>
+                  </div>
+
+                   <b>Model Value:</b>
+                  <table class="table table-bordered table-striped">
+                    <tr>
+                      <th>filename</th>
+                      <th>filetype</th>
+                      <th>filesize (<i><small>KB</small></i>)</th>
+                      <th>base64</th>
+                    </tr>
+                    <tr ng-show="file">
+                      <td>{{file.filename}}</td>
+                      <td>{{file.filetype}}</td>
+                      <td>{{file.filesize / 1000}}</td>
+                      <td>{{file.base64.substring(0, 30)}}...</td>
+                    </tr>
+                    <tr>
+                      <td colspan="4" ng-show="!file">
+                        <small><i>No file selected.</i></small>
+                      </td>
+                    </tr>
+                  </table>
+                  <hr>
+                  </form>
+             </div>
+             <div class="card">
+               <img ng-src="{{eventImage}}" width="100%">
+             </div>
+
+          </div>
+        </div>
+      </div>
+
+    </ion-content>
+</ion-view>

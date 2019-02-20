@@ -1,0 +1,11 @@
+<div class="modal image-modal transparent">
+  <ion-slide-box on-slide-changed="slideChanged(index)" active-slide="activeSlide">
+    <ion-slide ng-repeat="photo in images">
+      <ion-scroll style="width: 100%; height: 100%" delegate-handle="scrollHandle{{$index}}">
+        <div class="centered">
+          <img width="100%" ng-src='{{baseImageURL}}{{images[$index].url}}' zoom-src="{{baseImageURL}}{{images[$index].url}}" zoom-view />
+        </div>
+      </ion-scroll>
+    </ion-slide>
+  </ion-slide-box>
+</div>

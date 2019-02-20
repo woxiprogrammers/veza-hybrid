@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "258962376929",
+    "firebase_url": "https://veza-ae462.firebaseio.com",
+    "project_id": "veza-ae462",
+    "storage_bucket": "veza-ae462.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:258962376929:android:81dac48535aed0b0",
+        "android_client_info": {
+          "package_name": "com.ionicframework.vezaandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "258962376929-it2akol77c0q0d2n2kts187365dpqogb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWmQR2vvm5oDm-EwTNcsoUERc5oaRkipM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

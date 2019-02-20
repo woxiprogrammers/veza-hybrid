@@ -1,0 +1,57 @@
+<ion-view view-title="Homework" name="homework" class="touch-effect">
+    <div class="row padding-0">
+        <div class="tabs-striped tabs-color-positive tabs-top">
+            <div class="tabs tab-align-inner">
+                <a class="tab-item margin-top-0">
+                    <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.notification">
+                    <i class="icon ion-notify"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+                    <i class="icon ion-homie"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.message">
+                    <i class="icon ion-message"><span class="badge badge-assertive"></span></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="bar bar-pink bar-header align-delete-bar">
+        <iion-item class="row">
+            <div class="row">
+                <!--<div class="col-25">
+                    <ion-checkbox class="checkbox-square checkboxList checkbox-assertive inner-hw-checkbox" ng-model="selectedAll" ng-click="checkAll()">
+                    </ion-checkbox>
+                </div>-->
+                <div class="col-10"  ng-click="myGoBack()">
+                    <button class="button-clear">
+                        <i class="ion-arrow-left-c button-back-white"></i>
+                    </button>
+                </div>
+                <div class="col-90 margin-top-5">
+                    <span class="inner-header">Homework</span>
+                </div>
+                <!--<div class="col-25">
+                    <a><i class="icon ion-trash-b align-delete-bin"></i></a>
+                </div>-->
+            </div>
+        </iion-item>
+    </div>
+    <ion-content ng-class="{expanded:$scope.isExpanded}" class="margin-top-48 padding-l-r-5">
+        <ion-list>
+            <ion-item class="notify-item-border no-border margin-bottom-10" ng-repeat="hw in homeworksListing">
+                <div class="row">
+                    <div class="col-80" ng-class='{ disabled: clickStatus}' ng-click="clickStatus || hwDetail(hw)">
+                        <h2><strong>{{hw.homeworkTitle}}</strong></h2>
+                        <p>{{hw.description}}<br><strong>{{hw.batch_name}} {{hw.class_name}} {{hw.division_name}} {{hw.subjectName}}</strong></p>
+                        <div class="row padding-0 margin-top-5">
+                            <div class="col-15">{{hw.created_at}}</div>
+                            <div class="col-10 col-offset-75 attachment-no"></div>                            
+                        </div>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

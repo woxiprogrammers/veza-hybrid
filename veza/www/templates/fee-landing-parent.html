@@ -1,0 +1,138 @@
+<ion-view view-title="Event" name="event" class="touch-effect">
+  <div class="row padding-0">
+    <div class="tabs-striped tabs-color-positive tabs-top">
+      <div class="tabs tab-align-inner">
+        <a class="tab-item margin-top-0">
+          <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+        </a>
+        <a class="tab-item margin-top-10" ui-sref="app.notification">
+          <i class="icon ion-notify"></i>
+        </a>
+        <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+          <i class="icon ion-homie"></i>
+        </a>
+        <a class="tab-item margin-top-10" ui-sref="app.message">
+          <i class="icon ion-message">
+            <span class="badge badge-assertive"></span>
+          </i>
+        </a>
+      </div>
+    </div>
+  </div>
+   <!-- <ion-content overflow-scroll="false" padding="true" style="background-image:url('img/education-bg.jpg');">  -->
+    <ion-content overflow-scroll="false" scroll="true" padding="true" > 
+    <div ng-show="clickOn=='con1'" style="height:100%;width:100%">
+      <button class="button button-full button-balanced " style="margin-bottom:0px;">Installment Structure</button>
+      <div ng-repeat="structure in studentFee">
+        <span>
+          <h4>
+            <b>Year: {{structure.fee_name}}</b>
+          </h4>
+        </span>
+        <div ng-show="show=='show'" style="overflow-x: hidden;height:auto; ">
+          <div class="card">
+            <table style="width:100%;">
+              <tr style="background-color:#edf3fc;" class="border-black-solid">
+                <th class="border-black-solid">
+                  <b>No
+                    <b>
+                </th>
+                <th  class="border-black-solid">
+                  <b>Due Date</b>
+                </th>
+                <th  class="border-black-solid">
+                  <b>Amount</b>
+                </th>
+                <th  class="border-black-solid">
+                  <b>Late Fee</b>
+                </th>
+              </tr>
+              <tr ng-repeat="installment in structure.installments" ng-click="detail(installment.installment_id)">
+                <td style="background-color:white"  class="border-black-solid"> 
+                  {{$index+1}}
+                </td>
+                <td style="background-color:white" class="border-black-solid">
+                  {{installment.due_date}}
+                </td>
+                <td style="background-color:white" class="border-black-solid">
+                  {{installment.total}}
+                </td>
+                <td style="background-color:white" class="border-black-solid">
+                  {{installment.late_fee}} &nbsp
+                  <i class="icon ion-chevron-right" style="float:right" />
+                </td>
+              </tr>
+            </table>
+          </div>
+          <center ng-if="structure.show_payment==true && LcStatus == false " style="margin-top:5px">
+              <button class="button button-small button-balanced" ng-click="openWebView(bodyId)">Pay Fees</button>
+            <br>
+            <hr>
+          </center>
+        
+          <center ng-if="structure.show_payment==false && LcStatus == false && myFees[$index].pending_fee != 0" style="margin-top:5px">
+            <div class="speech3" style="width:100%">
+              <font color="white">PLEASE PAY THE PREVIOUS PENDING FEES</font>
+            </div>
+            <hr>
+            <br>
+          </center>
+          <center ng-if="structure.show_payment==false && LcStatus == false && myFees[$index].pending_fee == 0" style="margin-top:5px">
+            <hr>
+            <br>
+          </center>
+        </div>
+      </div>
+    </div>
+    <div ng-show="clickOn=='con2'" style="height:100%;width:100%;">
+      <div ng-repeat="myFee in myFees">
+        <h3>
+          <b>{{myFee.structure_name}}</b>
+        </h3>
+        <div style="float:left;">
+          <div class="speech1">
+            <h4>Annual Fee</h4>
+            <h5> {{myFee.discount}} INR</h5>
+          </div>
+        </div>
+        <div style="float:right;">
+          <div class="speech">
+            <h4>Due Fee</h4>
+            <h5> {{myFee.pending_fee}} INR</h5>
+          </div>
+        </div>
+        <div style="margin-top: 35%">
+          <hr>
+        </div>
+      </div>
+      <!-- </div> -->
+      <ion-list>
+        <div class="item card-item" ng-repeat="item in transactions">
+          <div class="card stable-bg ink ink-dark">
+            <h2 style="text-align:left;color:black;padding:5px">
+              <b> {{item.id}}</b> {{item.structure_name}}</h2>
+            <div class="item item-avatar item-text-wrap">
+              {{item.transaction_amount}}
+              <div class="card-footer text-right">
+                {{item.transaction_type}}: {{item.transaction_detail}}
+                <div class="pull-left">
+                  <i class="icon ion-clock"></i> {{item.date}}
+                </div>
+              </div>
+            </div>
+            <div center>
+              <button class="button button-full button-dark" ng-click="checkStoragePermissionAndDownload(item.fee_id, item.id)">
+                Download Receipt
+              </button>
+            </div>
+          </div>
+        </div>
+      </ion-list>
+    </div>
+  </ion-content>
+  <ion-footer-bar align-title="center" style="border-top:2px solid grey">
+    <div class="" ng-click="showCon('con1')" style="height:60px;width:{{abc}};text-decoration:{{color}};color:#04a021;font-weight: {{bold1}};font-size:100%;text-align:center;border-right:1px solid grey;padding:6px">View Fee Structure</div>
+    <div class="" ng-click="showCon('con2')" style="height:60px;width:50%;text-decoration:{{color1}};color:#04a021;font-weight: {{bold2}};font-size:100%;text-align:center;padding:6px"
+      ng-show="show=='show'">My Fee</div>
+  </ion-footer-bar>
+</ion-view>

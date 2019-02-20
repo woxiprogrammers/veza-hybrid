@@ -1,0 +1,60 @@
+<ion-view view-title="Detail View" name="detailspage" class="touch-effect">
+    <div class="row padding-0">
+        <div class="tabs-striped tabs-color-positive tabs-top">
+            <div class="tabs tab-align-inner">
+                <a class="tab-item margin-top-0">
+                    <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.notification">
+                    <i class="icon ion-notify"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+                    <i class="icon ion-homie"></i>
+                </a>
+                <a class="tab-item margin-top-10">
+                    <i class="icon ion-message"><span class="badge badge-assertive"></span></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="bar bar-grey bar-header align-delete-bar">
+        <iion-item class="row">
+            <div class="row">
+                <div ng-click="myGoBack()">
+                    <button class="button-clear">
+                        <i class="ion-arrow-left-c button-back-white" style=width:50px;float:right"></i>
+                    </button>
+                </div>
+            </div>
+            <button class="button-clear" ng-click="edit()" style=width:50px;float:right">
+                <i class="icon ion-chevron-right" style="color:white"></i></i>
+            </button>
+        </iion-item>
+    </div>
+    <ion-content has-header="true" style="margin-top:70px;">
+        <div class="list padding-l-r-5" ng-repeat="editAchievment in editAchievments">
+            <div class="row bold description-title-font"><input type="text" ng-model="editTitle" style="height:20px;width:90%;text-align:center;padding:5px" ng-change="changeTitle(editTitle)"></div>
+            <div class="row margin-top-5"><c class="bold creator-font">{{editAchievment.createdBy['first_name']}}  {{editAchievment.createdBy['last_name']}}</c></div>
+            <div class="row bold"><time class="creator-time-font"> {{editAchievment.created_at}}</time></div>
+            <ion-slide-box>
+              <ion-slide ng-if="images.image" ng-repeat="images in editAchievmentImages">
+                  <div class="card margin-top-20">
+                  <img src="{{editAchievment.path}}/uploads/achievement/events/{{editAchievment.id}}/{{images.image}}" height="150px" width="100%">
+                  </div>
+                  <div>
+                    <input type="hidden" ng-model="achievementImageName" value="{{images.image}}">
+                  <input type="file" ng-model="achievementFile" name="{{images.image}}" base-sixty-four-input required onLoad="onLoad" maxsize="1000" accept="image/*">
+                    <a><i style="font-size:50px;float:right"  class="icon ion-ios-cloud-upload" ng-click="upload()"></i></a>
+                  </div>
+              </ion-slide>
+           </ion-slide-box>
+            <div class="row">
+              <textarea class="margin-top-36 description-font" ng-model="editDetail" ng-change="changeDetail(editDetail)" style="height:auto;width:90%;padding:8px">{{editAchievment.detail}}</textarea>
+            </div>
+         </div>
+    </ion-content>
+    <div id="footer" class="button-bar"  >
+  <a style="min-width: 50%;border-radius: 0px;" class="button button-lite icon-left ion-checkmark" ng-click="publish()">Publish</a>
+  <a style="min-width: 50%;border-radius: 0px;"  class="button button-calm icon-left ion-checkmark" ng-click="edit()">Edit</a>
+</div>
+</ion-view>

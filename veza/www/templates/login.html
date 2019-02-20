@@ -1,0 +1,35 @@
+<ion-view view-title="Login" align-title="left" class="touch-effect login-bg-col no-scroll">
+    <ion-content class="no-scroll" style="background: url(img/login.jpg) center; background-size: cover;">
+      <div class="col-10"  ng-click="goBackToSelectSchool()">
+          <button class="button-clear">
+              <i class="ion-arrow-left-c button-back-white"></i>
+          </button>
+      </div>
+        <div class="hero flat no-scroll" style="height:40%" >
+            <div class="logo-align" >
+                <div><img class="login-image" src="img/school-logo.png"/></div>
+                <h3>SSPSS</h3>
+            </div>
+        </div>
+
+        <div>
+          <h3 style="color:yellow;">{{error}}</h3>
+        </div>
+        <div class="children no-scroll" style="margin-top:50px;">
+            <form name="myForm" novalidate>
+                <div class="padding">
+                    <div class="list">
+                        <label class="item item-input">
+                            <input type="email" name="email" ng-model="email" placeholder="Username">
+                        </label>
+                        <label class="item item-input">
+                            <input type="password" name="password" ng-model="password" placeholder="Password">
+                        </label>
+
+                    </div>
+                    <button class="button button-full button-assertive ink" ng-click="submit(email, password)" tabindex="3">Login</button>
+                </div>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>

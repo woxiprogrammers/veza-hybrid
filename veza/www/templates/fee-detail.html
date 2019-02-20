@@ -1,0 +1,53 @@
+<ion-view view-title="Create Event" name="eventcreate" class="touch-effect">
+    <div class="row padding-0">
+        <div class="tabs-striped tabs-color-positive tabs-top">
+            <div class="tabs tab-align-inner">
+                <a class="tab-item margin-top-0">
+                    <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.notification">
+                    <i class="icon ion-notify"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+                    <i class="icon ion-homie"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.message">
+                    <i class="icon ion-message">
+                        <span class="badge badge-assertive"></span>
+                    </i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="bar bar-balanced bar-subheader">
+        <div class="col-30" ng-click="myGoBack()" style="padding-top:2%">
+            <button class="button-clear">
+                <i class="ion-arrow-left-c button-back-white"></i>
+            </button>
+            <span class="inner-header">Fee Particulars</span>
+        </div>
+    </div>
+    <ion-content ng-class="{expanded:$scope.isExpanded}" class="margin-top-48 padding-l-r-2">
+        <br>
+        <div class="card">
+            <table scrollable="true">
+                <tr>
+                    <b>
+                        <th>
+                            <h3>Particular</h3>
+                        </th>
+                    </b>
+                    <b>
+                        <th>
+                            <h3>Amount</h3>
+                        </th>
+                    </b>
+                </tr>
+                <tr ng-repeat="feeDetail in feeDetails">
+                    <th style="color:grey">{{feeDetail.particulars_name}}</th>
+                    <td>{{feeDetail.amount}}</td>
+                </tr>
+            </table>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,123 @@
+<ion-view view-title="Detail HW Teacher" name="thwdetailspage" class="touch-effect">
+    <div class="row padding-0">
+        <div class="tabs-striped tabs-color-positive tabs-top">
+            <div class="tabs tab-align-inner">
+                <a class="tab-item margin-top-0">
+                    <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.notification">
+                    <i class="icon ion-notify"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+                    <i class="icon ion-homie"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.message">
+                    <i class="icon ion-message">
+                        <span class="badge badge-assertive"></span>
+                    </i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="bar bar-pink bar-header align-delete-bar">
+        <iion-item class="row">
+            <div class="row">
+                <div class="col-10" ng-click="myGoBack()">
+                    <button class="button-clear">
+                        <i class="ion-arrow-left-c button-back-white"></i>
+                    </button>
+                </div>
+                <div class="col-90 margin-top-5">
+                    <span class="inner-header">{{hwrkDetail.subjectName}} {{hwrkDetail.class_name}} {{hwrkDetail.division_name}}</span>
+                </div>
+            </div>
+        </iion-item>
+    </div>
+    <ion-content ng-class="{expanded:$scope.isExpanded}" padding="true">
+        <div class="list padding-l-r-5">
+            <div class="row bold description-title-font">{{hwrkDetail.homeworkTitle}}</div>
+            <div class="row margin-top-5">
+                <div class="bold creator-font">{{hwrkDetail.teacher_name}}</div>
+            </div>
+            <div class="row bold">
+                <div class="creator-time-font">{{hwrkDetail.created_at}}</div>
+            </div>
+            <div class="margin-top-36">
+                <div class="no-border" ng-click="openModal()">
+                    <div class="row">
+                        <span>
+                            <b class="bold">Subject: </b>{{hwrkDetail.subjectName}}</span>
+                    </div>
+                    <div class="row">
+                        <span>
+                            <b class="bold">Batch:</b> {{hwrkDetail.batch_name}}
+                            <b class="bold"> Class:</b> {{hwrkDetail.class_name}}
+                            <b class="bold"> Div:</b> {{hwrkDetail.division_name}}</span>
+                    </div>
+                    <div class="row">
+                        <span>
+                            <b class="bold">Due Date:</b> {{hwrkDetail.due_date}}</span>
+                    </div>
+                    <div class="row">
+                        <span>
+                            <b class="bold">Homework Type:</b> {{hwrkDetail.homeworkType}}</span>
+                    </div>
+                    <div class="row">
+                        <span>
+                            <b class="bold">Assigned To:</b> {{contactList.length}} Student</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+            <p class="description-font">
+                <b class="bold">Description</b>
+                <br>{{hwrkDetail.description}}</p>
+        </div>
+        <div ng-if="fileName.length!=0">
+            <div class="row">
+                <div class="col-90">
+                    <div class="margin-top-5">
+                        <b class="bold">Download: </b>
+                        <b class="red-font">{{fileName}}</b>
+                    </div>
+                </div>
+                <i class="icon ion-android-download col-10 font-225" ng-click="checkStoragePermissionAndDownload()"></i>
+            </div>
+            <!-- <div class="card" ng-if="fileExtention !='pdf'">
+                <img ng-src="{{hwrkDetail.attachment_file}}">
+            </div> -->
+        </div>
+
+        </div>
+    </ion-content>
+</ion-view>
+
+<script id="studentlist.html" type="text/ng-template">
+    <div class="modal">
+        <div class="modal-view">
+            <ion-header-bar class="bar-pink">
+                <div class="row">
+                    <div class="col-80">
+                        <h3 class="modal-title">Assigned To</h3>
+                    </div>
+                    <div class="col-20">
+                        <a><i class="icon ion-close align-delete-bin" ng-click="closeModal()"></i></a>
+                    </div>
+                </div>
+            </ion-header-bar>
+            <ion-content has-bouncing="true">
+                <div class="list">
+                    <ion-item class="contact-list padding-5" ng-repeat="contct in contactList">
+                        <div class="row">
+                            <div class="col-75">
+                                <h2><strong>{{contct.name}}</strong></h2>
+                            </div>
+                        </div>
+                    </ion-item>
+                </div>
+            </ion-content>
+        </div>
+    </div>
+</script>

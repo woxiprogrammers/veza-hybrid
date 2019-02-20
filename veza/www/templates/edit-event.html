@@ -1,0 +1,50 @@
+<ion-view view-title="Edit Event" name="editevent" class="touch-effect">
+    <div class="row padding-0">
+        <div class="tabs-striped tabs-color-positive tabs-top">
+            <div class="tabs tab-align-inner">
+                <a class="tab-item margin-top-0">
+                    <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.notification">
+                    <i class="icon ion-notify"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+                    <i class="icon ion-homie"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.message">
+                    <i class="icon ion-message"><span class="badge badge-assertive"></span></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="bar bar-event bar-header align-delete-bar">
+        <iion-item class="row">
+            <div class="row">
+                <div class="col-10">
+                    <button class="button-clear" ng-click="myGoBack()">
+                        <i class="ion-arrow-left-c button-back-white"></i>
+                    </button>
+                </div>
+                <div class="col-90 margin-top-5">
+                    <span class="inner-header">Edit Event</span>
+                </div>
+            </div>
+        </iion-item>
+    </div>
+    <ion-content ng-class="{expanded:$scope.isExpanded}" class="padding-l-r-5 margin-top-48">
+        <ion-list>
+            <ion-item class="notify-item-border" ng-repeat="nMsg in nMessages" ng-click="eventEdit()">
+                <div class="card">
+                    <img src="img/{{nMsg.Picture}}">
+                </div>
+                <div class="row">
+                    <div class="msg-{{nMsg.Status}}">
+                        <p><strong>{{nMsg.Message}}</strong><br><i class="font-italic">{{nMsg.Timestamp}}</i>
+                        </p>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+
+</ion-view>

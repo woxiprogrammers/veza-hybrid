@@ -1,0 +1,44 @@
+<ion-view view-title="Detail View" name="detailspage" class="touch-effect">
+    <div class="row padding-0">
+        <div class="tabs-striped tabs-color-positive tabs-top">
+            <div class="tabs tab-align-inner">
+                <a class="tab-item margin-top-0">
+                    <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.notification">
+                    <i class="icon ion-notify"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+                    <i class="icon ion-homie"></i>
+                </a>
+                <a class="tab-item margin-top-10">
+                    <i class="icon ion-message"><span class="badge badge-assertive"></span></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="bar bar-cool bar-header align-delete-bar">
+        <iion-item class="row">
+            <div class="row">
+                <div class="col-10"  ng-click="myGoBack()">
+                    <button class="button-clear">
+                        <i class="ion-arrow-left-c button-back-white"></i>
+                    </button>
+                </div>
+                <div class="col-90 margin-top-5">
+                    <span class="inner-header">Notification Title</span>
+                </div>
+            </div>
+        </iion-item>
+    </div>
+    <ion-content ng-class="{expanded:$scope.isExpanded}" class="margin-top-48 padding-l-r-5">
+        <div class="list">
+            <div class="row item">
+                <h2>Subject of Content</h2>
+            </div>
+            <div class="item">
+                <p>Content / Description<br>Error dicunt theophrastus cu qui. Ad eos simul possit option, adipisci principes sed at. Detracto adolescens pro ea, duo noLorem ipsum dolor sit amet, ea oblique constituam signiferumque eam. Pri adipisci maluisset te.Lorem ipsum dolor sit amet, ea oblique constituam signiferumque eam. Pri adipisci maluisset te.Lorem ipsum dolor sit amet, ea oblique constituam signiferumque eam. Pri adipisci maluisset te. </p>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

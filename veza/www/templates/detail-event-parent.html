@@ -1,0 +1,78 @@
+<ion-view view-title="Event" name="event" class="touch-effect">
+    <div class="row padding-0">
+        <div class="tabs-striped tabs-color-positive tabs-top">
+            <div class="tabs tab-align-inner">
+                <a class="tab-item margin-top-0">
+                    <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.notification">
+                    <i class="icon ion-notify"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+                    <i class="icon ion-homie"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.message">
+                    <i class="icon ion-message"><span class="badge badge-assertive"></span></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="bar bar-event bar-header align-delete-bar">
+        <iion-item class="row">
+            <div class="row">
+                <div class="col col-10">
+                    <button class="button-clear" ng-click="myGoBack()">
+                        <i class="ion-arrow-left-c button-back-white"></i>
+                    </button>
+                </div>
+                <div class="col margin-top-5">
+                    <span class="inner-header">Events Details</span>
+                </div>
+            </div>
+        </iion-item>
+    </div>
+
+    <ion-content ng-class="{expanded:$scope.isExpanded}" class="margin-top-40">
+        <div class="row">
+            <div class="col">
+              <div class="card" ng-repeat="event in eventdetailsList">
+                 <div class="item item-text-wrap">
+                   <span class="pull-right">
+                     <button ng-class='{ displayno: clickStatus}' class="button button-balanced status-button" ng-disabled="clickStatus" >
+                           {{event.status}}
+                     </button>
+                   </span>
+                    <br>
+                    <h2><strong>{{event.title}}</strong></h2>
+                    <h3>
+                      <span>
+                        <i>Created by <strong>{{event.created_by}}</strong> on
+                          <strong> {{event.created_at}}</strong>
+                        </i>
+                      </span>
+                    </h3>
+                  </div>
+                 <div class="item item-text-wrap">
+                   <span><strong>Event From : </strong> {{event.start_date}}</span><br>
+                   <span><strong>Event To : </strong> {{event.end_date}}</span>
+                </div>
+                 <div class="item item-body">
+                    <img class="full-image" src="{{event.path}}">
+                 </div>
+                 <div class="item item-text-wrap">
+                    <span>{{event.detail}}</span>
+                 </div>
+                 <div class="item item-text-wrap" ng-if="event.status == 'Published'">
+                    <h3>
+                      <span>
+                        <i>Published by <strong>{{event.published_by}}</strong> on
+                          <strong> {{event.published_at}}</strong>
+                        </i>
+                      </span>
+                    </h3>
+                  </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,61 @@
+<ion-view view-title="Edit Event" name="editevent" class="touch-effect">
+    <div class="row padding-0">
+        <div class="tabs-striped tabs-color-positive tabs-top">
+            <div class="tabs tab-align-inner">
+                <a class="tab-item margin-top-0">
+                    <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.notification">
+                    <i class="icon ion-notify"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+                    <i class="icon ion-homie"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.message">
+                    <i class="icon ion-message"><span class="badge badge-assertive"></span></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="bar bar-orange bar-header align-delete-bar">
+        <iion-item class="row">
+            <div class="row" ng-click="myGoBack()">
+                <div class="col-20">
+                    <button class="button-clear">
+                        <i class="ion-arrow-left-c button-back-white"></i>
+                    </button>
+                </div>
+                <div class="col-80 margin-top-5">
+                    <span class="inner-header">Pending Leave Approval</span>
+                </div>
+            </div>
+        </iion-item>
+    </div>
+    <ion-content ng-class="{expanded:$scope.isExpanded}" class="padding-l-r-5 margin-top-48">
+        <ion-list>
+            <div  ng-repeat="leave in leaveListing">
+                <ion-item class="notify-item-border no-border margin-bottom-10">
+                    <div class="row" ng-if="userRole == 'teacher'">
+                        <div class="col-80" ng-click="leaveDetails(leave)">
+                            <a class="text-decoration-none">
+                                <h2><strong>{{leave.name}}</strong><strong> #.{{leave.roll_number}}</strong><br><i class="font-italic">{{leave.batch}} {{leave.class}} {{leave.division}}</i></h2><br>
+                                <p>{{leave.title}}<br><strong><i class="font-italic"> {{leave.leave_type}} {{leave.applied_on}}</i></strong></p>
+                            </a>
+                        </div>
+                        <div class="col-20" ng-click="approveLeave(leave.leave_id)">
+                            <button class="button button-balanced approve-button">
+                                Approve
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row" ng-click="leaveDetails(leave)" ng-if="userRole == 'parent'">
+                        <a class="text-decoration-none">
+                            <h2><strong>{{leave.title}}</strong></h2>
+                            <p>{{leave.reason}}<br><strong><i class="font-italic"> {{leave.leave_type}}, {{leave.applied_on}}</i></strong></p>
+                        </a>
+                    </div>
+                </ion-item>
+            </div>
+        </ion-list>
+    </ion-content>
+</ion-view>

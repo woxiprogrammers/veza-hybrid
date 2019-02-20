@@ -1,0 +1,68 @@
+<ion-view view-title="Attendance" name="attendance" class="touch-effect">
+    <div class="row padding-0">
+        <div class="tabs-striped tabs-color-positive tabs-top">
+            <div class="tabs tab-align-inner">
+                <a class="tab-item margin-top-0">
+                    <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.notification">
+                    <i class="icon ion-notify"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+                    <i class="icon ion-homie"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.message">
+                    <i class="icon ion-message"><span class="badge badge-assertive"></span></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="bar bar-orange bar-header align-delete-bar">
+        <iion-item class="row">
+            <div class="row" ng-click="myGoBack()">
+                <div class="col-10">
+                    <button class="button-clear">
+                        <i class="ion-arrow-left-c button-back-white"></i>
+                    </button>
+                </div>
+                <div class="col-90 margin-top-5">
+                    <span class="inner-header">Attendance</span>
+                </div>
+            </div>
+        </iion-item>
+    </div>
+    <ion-content ng-class="{expanded:$scope.isExpanded}" class="margin-top-48 padding-l-r-5">
+        <ion-list>
+            <ion-item class="notify-item-border">
+                <div class="row">
+                    <a class="item" ui-sref="app.viewattendance">
+                        <div class="col-90 col-offset-10">
+                            <h2><strong>View Attendance</strong></h2>
+                            <p>View Daily Attendance for current year</p>
+                        </div>
+                    </a>
+                </div>
+            </ion-item>
+            <ion-item class="notify-item-border">
+                <div class="row">
+                    <a class="item" ui-sref="app.leaveapproval">
+                        <div class="col-90 col-offset-10">
+                            <h2><strong>Pending Leaves</strong></h2>
+                            <p>Leaves for Approval Listing</p>
+                        </div>
+                    </a>
+                </div>
+            </ion-item>
+            <ion-item class="notify-item-border">
+                <div class="row">
+                    <a class="item" ui-sref="app.approvedleaves">
+                        <div class="col-90 col-offset-10">
+                            <h2><strong>Approved Leaves</strong></h2>
+                            <p>Approved Leaves Listing</p>
+                        </div>
+                    </a>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

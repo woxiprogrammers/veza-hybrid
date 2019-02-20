@@ -1,0 +1,5 @@
+<ion-content>
+  <div class="modal transparent fullscreen-player" on-swipe-down="closeModal()" data-tap-disable="true" ng-repeat="videos in video">
+    <iframe controls class="centered" src="{{trustSrc(video[$index].url)}}" width="100%" height="50%"></iframe>
+  </div>
+</ion-content>

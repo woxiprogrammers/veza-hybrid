@@ -1,0 +1,87 @@
+<ion-view view-title="Event" name="event" class="touch-effect">
+    <div class="row padding-0">
+        <div class="tabs-striped tabs-color-positive tabs-top">
+            <div class="tabs tab-align-inner">
+                <a class="tab-item margin-top-0">
+                    <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.notification">
+                    <i class="icon ion-notify"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+                    <i class="icon ion-homie"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.message">
+                    <i class="icon ion-message"><span class="badge badge-assertive"></span></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="bar bar-event bar-header align-delete-bar">
+
+            <div class="row">
+                <div class="col col-30">
+                    <button class="button-clear" ng-click="myGoBack()">
+                        <i class="ion-arrow-left-c button-back-white"></i>
+                    </button>
+                </div>
+                <div class="col col-40 margin-top-5">
+                    <span class="inner-header">Events</span>
+                </div>
+                <button class="col col-30 margin-top-5" ng-hide="hidden == false" class="button button-stable" ng-click="hidden=false" style="float:right;background-color:#A09D9D;color:white">Select Year</button>
+                <div class="col col-30 margin-top-5 margin-right-5" ng-hide="hidden == true" ng-animate="'fade'" style="float:right;height:350px;margin-right:5%;margin-top:-1%">
+                     <select  id="eventYear" ng-model="selectedYear" ng-options="yearMonth.year as yearMonth.year for yearMonth in yearMonthData" ng-change="setMonth(selectedYear)" style="background-color:#A09D9D;font-size:20px;color:white">
+                           <option value="">Select Year</option>
+                      </select>
+                      <hr>
+                      <div>
+                          <button  class=" " ng-disabled="clickStatus" ng-click="recentEvent()" style="height:3px;width:100px;border-radius: 8px;background-color:#A09D9D;color:white;font-size:15px;">Recent</button>
+                      </div>
+                      <div ng-repeat="(key, value) in monthList">
+                        <button ion-button round ng-click="eventByMonth({{key}})"  style="height:5px;padding:3px;width:100px;border-radius: 8px;background-color:#A09D9D;color:white">
+                          <p style="font-size:15px;color:white"><b>{{value}}</b></p>
+                        </button><div style="height:2px"></div>
+                      </div>
+                      <button style="border-radius: 8px;background-color:#A09D9D;;width:100px;color:white;font-size:15px;" ng-click="hidden=true"> Close <i class="icon ion-close-circled"  style="font-size:40px;color:white"></i></button>
+                </div>
+           </div>
+    </div>
+    <ion-content style="background-color:#ced6e2">
+        <div style="margin-top:50px;">
+            <div>
+              <ion-scroll  direction="y" >
+                <ion-list>
+                  <ion-item  ng-repeat="event in eventList" class="card" style="background-color:white">
+                    <a class="item" ng-click="getDetailsOfEvent(event.id)">
+                      <h2><strong>{{event.title}}</strong></h2>
+                      <span class="eventHeaderFontSize"><strong>On </strong> {{event.start_date}}</span>
+                      <span class="pull-right" ng-if="event.status == 'Published'">
+                        <button  class="button button-balanced status-button" ng-disabled="clickStatus" >
+                              {{event.status}}
+                        </button>
+                      </span>
+
+                      <span class="pull-right" ng-if="event.status == 'Pending'">
+                        <button  class="button button-assertive status-button" ng-disabled="clickStatus" >
+                              {{event.status}}
+                        </button>
+                      </span>
+
+                      <span class="pull-right" ng-if="event.status == 'Draft'">
+                        <button  class="button button-energized status-button" ng-disabled="clickStatus" >
+                              {{event.status}}
+                        </button>
+                      </span>
+                    </a>
+                 </ion-item>
+                </ion-list>
+              </ion-scroll>
+            </div>
+            <div class="col col-20 pull-right">
+
+            </div>
+
+        </div>
+    </ion-content>
+</ion-view>

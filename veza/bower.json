@@ -1,0 +1,19 @@
+{
+  "name": "HelloIonic",
+  "private": "true",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.2.4"
+  },
+  "dependencies": {
+    "ngCordova": "^0.1.27-alpha",
+    "ionic-datepicker": "^1.2.1",
+    "ionic-zoom-view": "^2.0.0"
+  },
+  "resolutions": {
+    "angular-animate": "1.4.3",
+    "ionic": "1.2.4",
+    "angular": "1.4.3",
+    "angular-ui-router": "0.2.13",
+    "angular-sanitize": "1.4.3"
+  }
+}

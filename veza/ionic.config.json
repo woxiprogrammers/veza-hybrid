@@ -1,0 +1,16 @@
+{
+  "name": "GEMS",
+  "integrations": {
+    "gulp": {},
+    "cordova": {}
+  },
+  "type": "ionic1",
+  "watchPatterns": [
+    "scss/**/*",
+    "www/**/*",
+    "!www/lib/**/*",
+    "!www/**/*.map"
+  ],
+  "pro_id": "7c6f7241",
+  "id": "7c6f7241"
+}

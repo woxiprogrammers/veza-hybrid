@@ -1,0 +1,81 @@
+<ion-view view-title="Create Event" name="eventcreate" class="touch-effect">
+    <div class="row padding-0">
+        <div class="tabs-striped tabs-color-positive tabs-top">
+            <div class="tabs tab-align-inner">
+                <a class="tab-item margin-top-0">
+                    <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.notification">
+                    <i class="icon ion-notify"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+                    <i class="icon ion-homie"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.message">
+                    <i class="icon ion-message"><span class="badge badge-assertive"></span></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="bar bar-event bar-header align-delete-bar">
+        <iion-item class="row">
+            <div class="row">
+                <div class="col-10" ng-click="myGoBack()">
+                    <button class="button-clear">
+                        <i class="ion-arrow-left-c button-back-white"></i>
+                    </button>
+                </div>
+                <div class="col-60 margin-top-5">
+                    <span class="inner-header">New Event</span>
+                </div>
+                <div class="col-20" ng-click="publishEvent()">
+                    <button class="button-balanced header-approve">
+                     Publish
+                    </button>
+                </div>
+                <div class="col-10" ng-click="saveAsDraftEvent()">
+                    <a>
+                      <i class="icon ion-android-send align-delete-bin"></i>
+                    </a>
+                </div>
+            </div>
+        </iion-item>
+    </div>
+    <ion-content ng-class="{expanded:$scope.isExpanded}" class="margin-top-48 padding-l-r-2">
+      <div class="row">
+          <div class="col">
+            <div class="list">
+               <label class="item item-input item-floating-label">
+               <span class="input-label">Title : </span>
+               <input id="eventTitle" ng-model="eventTitle" type="text" placeholder="Write Event title here" ng-change="setEventTitle(eventTitle)">
+               </label>
+
+               <label class="item item-input item-floating-label">
+               <span class="input-label">Event description : </span>
+                      <textarea ng-model="eventDetail" placeholder="Write Event description here" rows = "6" ng-change="setEventDetail(eventDetail)"></textarea>
+               </label>
+
+               <div class="row item">
+                   <div class="col-33 padding-top-10 date-bg"><h3 class="margin-left-1">Start Date : </h3></div>
+                   <input id="startEventTime" class="item-input col-67" type="date" ng-model="startEventTime"  min="{{minDate}}" ng-change="setEventStartDate(startEventTime)">
+               </div>
+                 <hr>
+              <div class="row item">
+                  <div class="col-33 padding-top-10 date-bg"><h3 class="margin-left-1">End Date : </h3></div>
+                    <input id="endEventTime" class="item-input col-67" type="date" ng-model="endEventTime" value="{{endEventTime}}" min="{{minDate}}" ng-change="setEventEndDate(endEventTime)">
+                  </div>
+                    <hr>
+              </div>
+              <div class="container">
+                 <form name="form">
+                   <div class="input-group">
+                        <label for="file">Select File</label>
+                        <input type="file" ng-model="file" name="file" base-sixty-four-input required onLoad="onLoad" maxsize="500" accept="image/*">
+                    </div>
+                    <hr>
+                    </form>
+               </div>
+        </div>
+      </div>
+    </ion-content>
+</ion-view>

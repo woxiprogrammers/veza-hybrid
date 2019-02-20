@@ -1,0 +1,55 @@
+<ion-view view-title="Create Achievement" name="createachievement" class="touch-effect">
+    <div class="row padding-0">
+        <div class="tabs-striped tabs-color-positive tabs-top">
+            <div class="tabs tab-align-inner">
+                <a class="tab-item margin-top-0">
+                    <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.notification">
+                    <i class="icon ion-notify"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+                    <i class="icon ion-homie"></i>
+                </a>
+                <a class="tab-item margin-top-10">
+                    <i class="icon ion-message"><span class="badge badge-assertive"></span></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="bar bar-grey bar-header align-delete-bar">
+        <iion-item class="row">
+            <div class="row">
+                <div class="col-10"  ng-click="myGoBack()">
+                    <button class="button-clear">
+                        <i class="ion-arrow-left-c button-back-white"></i>
+                    </button>
+                </div>
+                <center>
+                <h4 style="color:white;"><i><strong>Create Achievement</strong></i></h4>
+                </center>
+            </div>
+        </iion-item>
+    </div>
+    <ion-content ng-class="{expanded:$scope.isExpanded}" padding="true" class="margin-top-48 padding-l-r-5">
+      <div class="list">
+           <label class="item item-input item-floating-label">
+           <span class="input-label">Title</span>
+           <input type="text" ng-model="title" placeholder="Title" required="true" ng-change="titleChange(title)">
+           </label>
+           <label class="item item-input item-floating-label">
+           <span class="input-label">Description</span>
+           <input type="text" ng-model="detail" placeholder="Description" ng-change="detailChange(detail)" required="true">
+           </label>
+           <br><br><br>
+           <label>
+           <span class="input-label">Upload Images</span>
+             <input type="file" ng-model="file" name="file" base-sixty-four-input required onLoad="onLoad" maxsize="1000" accept="image/*">
+           </label>
+         </div>
+           <div class="padding">
+           <button class="button button-block button-dark" ng-click="create()" style="color:white">Create</div>
+           </div>
+
+    </ion-content>
+</ion-view>

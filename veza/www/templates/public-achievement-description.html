@@ -1,0 +1,28 @@
+<ion-view view-title="Detail View" name="detailspage" class="touch-effect">
+  <div class="bar bar-header bar-assertive" >
+    <div class="col-10"  ng-click="myGoBack()" style="padding-top:2%">
+        <button class="button-clear">
+            <i class="ion-arrow-left-c button-back-white" style="font-size:25px"></i>
+        </button>
+    </div>
+      <h1 class="title">ACHIEVEMENTS</h1>
+    </div>
+    <ion-content ng-class="{expanded:$scope.isExpanded}" padding="true">
+                <div class="card" ng-repeat="achievementDetail in DetailAchievemtns">
+                <h3 style="text-transform:capitalize;text-align:center;text-shadow: 2px 1px #72f9ea;">{{achievementDetail.title}}</h3>
+                <div class="row margin-top-5"><c class="bold creator-font">{{achievementDetail.createdBy['first_name']}}  {{achievementDetail.createdBy['last_name']}}</c></div>
+                <div class="row bold"><time class="creator-time-font"> {{achievementDetail.created_at}}</time></div>
+                <ion-slide-box >
+                  <ion-slide ng-if="images.image" ng-repeat="images in imageData">
+                      <div class="card margin-top-20">
+                      <img src="{{achievementDetail.path}}/uploads/achievement/events/{{achievementDetail.id}}/{{images.image}}" height="150px" width="100%">
+                      </div>
+                  </ion-slide>
+               </ion-slide-box>
+            <br>
+            <div style="margin:10px;word-wrap: break-word;">
+                <p style="text-align:justify"><h4>{{achievementDetail.detail}}<h4></p>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

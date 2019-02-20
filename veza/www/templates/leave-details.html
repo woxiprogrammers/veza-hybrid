@@ -1,0 +1,60 @@
+<ion-view view-title="Detail View" name="detailspage" class="touch-effect">
+    <div class="row padding-0">
+        <div class="tabs-striped tabs-color-positive tabs-top">
+            <div class="tabs tab-align-inner">
+                <a class="tab-item margin-top-0">
+                    <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.notification">
+                    <i class="icon ion-notify"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+                    <i class="icon ion-homie"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.message">
+                    <i class="icon ion-message"><span class="badge badge-assertive"></span></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="bar bar-orange bar-header align-delete-bar">
+        <iion-item class="row">
+            <div class="row" ng-click="myGoBack()">
+                <div class="col-10">
+                    <button class="button-clear">
+                        <i class="ion-arrow-left-c button-back-white"></i>
+                    </button>
+                </div>
+                <div class="col-50 margin-top-5">
+                    <span class="inner-header">Leave Applied</span>
+                </div>
+                <div class="col-25 margin-left-15" ng-if="userRole == 'teacher'" ng-click="approveLeave(leaveDetail.leave_id)">
+                    <button class="button-balanced header-approve">
+                     Approve
+                    </button>
+                </div>
+            </div>
+        </iion-item>
+    </div>
+    <ion-content ng-class="{expanded:$scope.isExpanded}" class="margin-top-48 padding-l-r-5">
+        <div class="list padding-l-r-5">
+            <div class="row bold description-title-font">{{leaveDetail.title}}</div>
+            <div class="margin-top-10">
+                <div class="no-border margin-top-10 margin-bottom-10">
+                <div class="row margin-top-5"><c class="bold creator-font">Name: {{leaveDetail.name}}</c><c class="bold creator-font"> #.{{leaveDetail.roll_number}}</c></div>
+                <div class="row bold"><time class="creator-time-font">Created: {{leaveDetail.applied_on}}</time></div>
+                <div class="row"><b class="bold">Batch: </b> {{leaveDetail.batch}}<b class="bold margin-left-2">Class: </b> {{leaveDetail.class}} <b class="bold margin-left-2">Div: </b> {{leaveDetail.division}}</div>
+                <div class="row"><span><b class="bold">Leave Type: </b> {{leaveDetail.leave_type}}</span></div>
+
+                <div class="row"><span><b class="bold">Leave From: </b> {{leaveDetail.form_date}} <b class="bold"> Leave Upto: </b>{{leaveDetail.end_date}}</span></div>
+
+
+            </div>
+            <div class="margin-top-36 description-font no-border padding-5">
+                <h3>Reason</h3>
+                <p>{{leaveDetail.reason}}</p>
+            </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

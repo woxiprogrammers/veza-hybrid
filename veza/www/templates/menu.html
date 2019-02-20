@@ -1,0 +1,49 @@
+<ion-side-menus enable-menu-with-back-views="true" class="touch-effect">
+    <ion-side-menu-content>
+        <ion-nav-bar ng-class="{expanded: isExpanded, 'has-header-fab-left': hasHeaderFabLeft, 'has-header-fab-right': hasHeaderFabRight}" align-title="left">
+        </ion-nav-bar>
+        <ion-nav-view name="fabContent"></ion-nav-view>
+        <ion-nav-view name="menuContent" animation="slide-left-right" ng-class="{expanded: isExpanded}" ></ion-nav-view>
+    </ion-side-menu-content>
+    <ion-side-menu side="left" id="left-menu">
+        <ion-content>
+          <div style="height:200px;background-color:#edf3ff;position:relative;padding:8px" ng-show="check" >
+                   <div><br><br>
+                        <h3 style="text-align:center">{{userData.firstname}} &nbsp{{userData.lastname}}</h3>
+                        <h4 style="text-align:center"><span style="color:black"> <b>{{userData.email}}</b></h4>
+                  </div>
+                   <div  style="position: absolute; height: 38px;bottom: 0; right: 0;  left: 0;background-color:#d0d8e5;padding:7px;"  ng-click="toggle = !toggle">Change Student <i class="icon ion-arrow-down-b" style="float:right;font-size:25px"></i></div>
+         </div>
+         <div style="height:200px;background-color:#b1bdd1;position:relative;padding:8px" ng-hide="check" >
+                  <div>
+                       <h3 style="text-align:center">{{obj.student_name}} &nbsp{{obj.last_name}}</h3>
+                       <h4 style="text-align:center"><span style="color:grey">GRN</span> <b>{{obj.grn}}</b></h4>
+                       <h4 style="text-align:center"><span style="color:grey">Roll No</span> <b>{{obj.roll_number}}</b></h4>
+                       <h4 style="text-align:center"><span style="color:grey">Class</span>  <b>{{obj.class_name}}</b></h4>
+                       <h4 style="text-align:center"><span style="color:grey">Division</span> <b>{{obj.student_div}}</b></h4>
+                 </div>
+                  <div  style="position: absolute; height: 38px;bottom: 0; right: 0;  left: 0;background-color:#d0d8e5;padding:7px;"  ng-click="toggle = !toggle">Change Student <i class="icon ion-arrow-down-b" style="float:right;font-size:25px"></i></div>
+        </div>
+          </div>
+          <div class="box on" ng-show="toggle" ng-animate="'box'">
+            <ion-list ng-show="studToggle">
+                <ion-item nav-clear menu-close class="sm-item-border" ng-repeat="student in studentdataswitch" ng-click="studentclick(student.student_id,student.body_id)">
+                  <div style="color:green;font-size:10;"> {{student.student_name}} &nbsp {{student.last_name}}</div>
+                </ion-item>
+                </ion-list>
+          </div>
+          <div class="box off" ng-hide="toggle" ng-animate="'box'">
+                <div class="list">
+                          <!-- <div class="item item-icon-left" ng-click="showAlert()">
+                            <i class="icon ion-clipboard"></i>Terms and conditions
+                          </div>
+                          <div class="item item-divider" style="height:5px;"></div> -->
+                          <div class="item item-icon-left" ng-click="signOut()">
+                            <i class="icon ion-power"></i>Logout
+                          </div>
+                </div>
+          </div>
+        </ion-content>
+    </ion-side-menu-content>
+   </ion-side-menu>
+</ion-side-menus>

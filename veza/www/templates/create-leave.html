@@ -1,0 +1,60 @@
+<ion-view view-title="Compose Homework" name="hwcompose" class="touch-effect">
+    <div class="row padding-0">
+        <div class="tabs-striped tabs-color-positive tabs-top">
+            <div class="tabs tab-align-inner">
+                <a class="tab-item margin-top-0">
+                    <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.notification">
+                    <i class="icon ion-notify"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+                    <i class="icon ion-homie"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.message">
+                    <i class="icon ion-message"><span class="badge badge-assertive"></span></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="bar bar-orange bar-header align-delete-bar">
+        <iion-item class="row">
+            <div class="row">
+                <div class="col-10"  ng-click="myGoBack()">
+                    <button class="button-clear">
+                        <i class="ion-arrow-left-c button-back-white"></i>
+                    </button>
+                </div>
+                <div class="col-70 margin-top-5">
+                    <span class="inner-header">Apply for Leave</span>
+                </div>
+                <div class="col-20" ng-click="send()">
+                    <a><i class="icon ion-android-send align-delete-bin"></i></a>
+                </div>
+            </div>
+        </iion-item>
+    </div>
+    <ion-content ng-class="{expanded:$scope.isExpanded}" class="margin-top-48 padding-l-r-5">
+        <div class="list padding-l-r-10" ng-if="LcStatus == false">
+            <label class="item item-input border-bottom">
+                <input type="text" ng-model="leaveTitle" placeholder="Leave Title" ng-change="setTitle(leaveTitle)">
+            </label>
+            <div class="row">
+                <div class="row border-bottom">
+                    <select class="item item-input item-select" ng-model="leaveType.leave" ng-options="leave.name for leave in leaveType track by leave.id" ng-change="getSelectedLeave(leaveType.leave)" ng-disabled="checkClass">
+                        <option value="" ng-disabled="true">--Leave Type--</option>
+                    </select>
+                </div>
+            </div>
+            <label class="item item-input">From Date:
+                 <input class="item-input border-bottom padding-5"   ng-model ="fromDate" type="date" value = {{fromDate}} ng-bind="fromDate | date:'yyyy/dd/MM'"ng-change="updateFromDate(fromDate)">
+            </label>
+            <label class="item item-input">To Date:
+                 <input class="item-input border-bottom padding-5"  ng-model ="toDate" type="date" value = {{toDate}} ng-change="updateToDate(toDate)">
+            </label>
+            <label class="item item-input">
+                <textarea ng-model="description" placeholder = "Leave Description" rows = "10" ng-change="setDescription(description)"></textarea>
+             </label>
+        </div>
+    </ion-content>
+</ion-view>

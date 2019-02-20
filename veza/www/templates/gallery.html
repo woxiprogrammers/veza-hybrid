@@ -1,0 +1,50 @@
+<body>
+  <div class="row padding-0">
+    <div class="tabs-striped tabs-color-positive tabs-top">
+        <div class="tabs tab-align-inner">
+            <a class="tab-item margin-top-0">
+                <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+            </a>
+            <a class="tab-item margin-top-10" ui-sref="app.notification">
+                <i class="icon ion-notify"></i>
+            </a>
+            <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+                <i class="icon ion-homie"></i>
+            </a>
+            <a class="tab-item margin-top-10" ui-sref="app.message">
+                <i class="icon ion-message"><span class="badge badge-assertive"></span></i>
+            </a>
+        </div>
+    </div>
+</div>
+    <ion-pane>
+      <div class="bar bar-subheader bar-assertive">
+        <div class="col-10"  ng-click="myGoBack()" style="padding-top:2%">
+            <button class="button-clear">
+                <i class="ion-arrow-left-c button-back-white"></i>
+            </button>
+            <h1 class="title">GALLERY</h1>
+        </div>
+      </div>
+      <ion-content class="has-subheader padding" >
+            <div class="row item item-list-detail" ng-repeat="folder_list in folders" ng-if="$index % 2 === 0" style="border-style: hidden !important" >
+              <div class="col col-50"  ng-if="$index < folders.length">
+                    <a class="item item-list-detail" style="height:100% !important; width: 100% !important;padding: 0px 0px 0px 0px; boarder-color:#a2a2a2" ng-click="galleryFolder({{'folder_list.id'}})" >
+                    <img  ng-src="{{folder_list.first_photo_url ? baseImageURL + folder_list.first_photo_url : 'img/no_preview.jpg'  }}" style="width:100%;height:80px !important"/>
+                  <div style="align:center">
+                    <center>{{folder_list.name}}</center>
+                  </div>
+                </a>
+              </div>
+              <div class="col col-50"  ng-if="$index+1 < folders.length">
+                <a class="item item-list-detail" style="height:100% !important; width: 100% !important;padding: 0px 0px 0px 0px; boarder-color:#a2a2a2" ng-click="galleryFolder({{'folders[$index+1].id'}})">
+                  <img  ng-src="{{folders[$index+1].first_photo_url ? baseImageURL + folders[$index+1].first_photo_url : 'img/no_preview.jpg'  }}" style="width:100%;height:80px !important"/>
+                  <div style="align:center">
+                    <center>{{folders[$index+1].name}}</center>
+                  </div>
+                </a>
+              </div>
+            </div>
+      </ion-content>
+    </ion-pane>
+  </body>

@@ -1,0 +1,71 @@
+<ion-view view-title="Mark Attendance" name="markattendance" class="touch-effect">
+    <div class="row padding-0">
+        <div class="tabs-striped tabs-color-positive tabs-top">
+            <div class="tabs tab-align-inner">
+                <a class="tab-item margin-top-0">
+                    <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.notification">
+                    <i class="icon ion-notify"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+                    <i class="icon ion-homie"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.message">
+                    <i class="icon ion-message"><span class="badge badge-assertive"></span></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="bar bar-orange bar-header align-delete-bar">
+        <iion-item class="row">
+            <div class="row"  ng-click="myGoBack()">
+                <div class="col-10">
+                    <button class="button-clear">
+                        <i class="ion-arrow-left-c button-back-white"></i>
+                    </button>
+                </div>
+                <div class="col-90 margin-top-5">
+                    <span class="inner-header">{{currentBatch}} {{currentClass}} {{currentDiv}}</span>
+                </div>
+            </div>
+        </iion-item>
+    </div>
+    <div class="item margin-top-100 item-borderless">
+        <div class="row">
+            <div class="col-20 padding-top-10 date-bg"><h2 class="margin-left-2">Date:</h2></div>
+            <input class="item-input col-80" type="date" ng-model="currentDate" ng-change="getStudentList()">
+        </div>
+        <div class="row">
+            <div class="col-20 margin-top-10 item-borderless">
+                <strong>No.</strong>
+            </div>
+            <div class="margin-top-10 col-80 item-borderless">
+                <strong>Names</strong>
+            </div>
+        </div>
+    </div>
+    <ion-content ng-class="{expanded:$scope.isExpanded}" class="padding-l-r-5 margin-top-150">
+        <div class="list">
+            <div class= "item" ng-repeat="item in studentList">
+                <div class="col-90">
+                    <div class="row" id="{{item.name}}" value="{{item.id}}" ng-checked="selection.indexOf(item.id) > -1" ng-if="item.leave_status == 0"><div class="col-20">{{item.roll_number}}</div><div class="col-80">{{item.name}}</div></div>
+                    <div class="row" id="{{item.name}}" value="{{item.id}}" ng-checked="selection.indexOf(item.id) > -1" ng-if="item.leave_status == 1"><div class="col-20">{{item.roll_number}}</div><div class="col-80">{{item.name}} Applied</div></div>
+                    <div class="row" id="{{item.name}}" value="{{item.id}}" ng-checked="selection.indexOf(item.id) > -1" ng-if="item.leave_status == 2"><div class="col-20">{{item.roll_number}}</div><div class="col-80">{{item.name}} Approved</div></div>
+                </div>
+                <div class="col-10 padding-5 mark-{{item.absent_status}}"  id="check{{item.id}}" ng-click="toggleCheck($event, item.id)"></div>
+            </div>
+        </div>
+        <div class = "height-15 row"></div>
+    </ion-content>
+    <div class="bar bar-footer modal-bottom no-border">
+        <div class="row">
+            <div class="col-25 col-offset-50 text-center" ng-click="goback()">
+                <label class="modal-bottom-text-orange">CANCEL</label>
+            </div>
+            <div class="col-25  text-center" ng-click="markAttendance()">
+                <label class="modal-bottom-text-orange">OK</label>
+            </div>
+        </div>
+    </div>
+</ion-view>

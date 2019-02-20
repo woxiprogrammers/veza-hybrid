@@ -1,0 +1,36 @@
+<ion-view class="touch-effect">
+    <div class="row padding-0">
+        <div class="tabs-striped tabs-color-positive tabs-top">
+            <div class="tabs tab-align-inner">
+                <a class="tab-item margin-top-0">
+                    <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.notification">
+                    <i class="icon ion-notify"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+                    <i class="icon ion-homie"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.message">
+                    <i class="icon ion-message"><span class="badge badge-assertive"></span></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="bar bar-dark bar-header align-delete-bar">
+        <iion-item class="row">
+                <div class="col col-10">
+                  <i class="icon icon ion-arrow-left-c" ng-click="$ionicGoBack()" style="margin-left:5px;font-size: 40px;"></i>
+                </div>
+                <div class="col col-50 margin-top-5">
+                    <span class="inner-header">Subjects</span>
+                </div>
+        </iion-item>
+    </div>
+    <br>
+    <ion-content overflow-scroll="false" padding="true" style="background-color:#c7f9f9" class="margin-top-40">
+      <div class="card" ng-repeat="subject in subjects" style="padding:10px" ng-click="getSubjectDetails(subject.id,subject.sub_subject_name)">
+        <center><b>{{subject.sub_subject_name}}</b></center>
+      </div>
+    </ion-content>
+  </ion-view>

@@ -1,0 +1,87 @@
+<ion-view view-title="Time Table" name="time-table" class="touch-effect">
+   <div class="row padding-0">
+        <div class="tabs-striped tabs-color-positive tabs-top">
+            <div class="tabs tab-align-inner">
+                <a class="tab-item margin-top-0">
+                    <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.notification">
+                    <i class="icon ion-notify"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+                    <i class="icon ion-homie"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.message">
+                    <i class="icon ion-message"><span class="badge badge-assertive"></span></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="margin-top-48">
+        <div class="tabs tabs-dark margin-top-10">
+            <a class="tab-item" ng-click="getTimetable(1)">
+                Mon
+            </a>
+            <a class="tab-item" ng-click="getTimetable(2)">
+                Tue
+            </a>
+            <a class="tab-item" ng-click="getTimetable(3)">
+                Wed
+            </a>
+            <a class="tab-item"  ng-click="getTimetable(4)">
+                Thu
+            </a>
+            <a class="tab-item"  ng-click="getTimetable(5)">
+                Fri
+            </a>
+            <a class="tab-item"  ng-click="getTimetable(6)">
+                Sat
+            </a>
+            <a class="tab-item"  ng-click="getTimetable(7)">
+                Sun
+            </a>
+        </div>
+        <ion-nav-view name="default-tab">
+                <div class="bar bar-time-table bar-header has-tabs-top">
+                    <iion-item class="row">
+                        <div class="row">
+                            <div class="col-10"  ng-click="dashBoard()">
+                                <button class="button-clear">
+                                    <i class="ion-arrow-left-c button-back-white"></i>
+                                </button>
+                            </div>
+                            <div class="col-70 margin-top-5">
+                                <span class="inner-header">Time Table</span>
+                            </div>
+                            <div class="col-20" ng-click="showPopup()" ng-if="userRole == 'teacher'">
+                                <a><i class="icon ion-ios-settings-strong align-delete-bin"></i></a>
+                            </div>
+                        </div>
+                    </iion-item>
+                </div>
+                <ion-view>
+                    <div class="bar bar-header bar-dark margin-top-44"><div class="col-offset-25 col-50 text-center padding-10">{{setDay}}</div></div>
+                    <ion-content scrollbar-y="true" class="margin-bottom-100">
+                        <ion-list>
+                            <div class="margin-top-52">
+                                <div ng-repeat="period in timeTableList">
+                                    <ion-item class="notify-item-border no-border margin-bottom-10" ng-if="period.is_break == 0">
+                                            <div class="col-50 col-offset-25 text-center">
+                                                <h2 class="bold">{{period.subject}}</h2>
+                                                <p>{{period.teacher}}<br>{{period.start_time}} - {{period.end_time}}</p>
+                                            </div>
+                                    </ion-item>
+                                    <ion-item class="notify-item-border no-border margin-bottom-10 background-break" ng-if="period.is_break == 1">
+                                            <div class="col-50 col-offset-25 text-center">
+                                                <h2 class="bold">{{period.subject}}</h2>
+                                                <p>{{period.teacher}}<br>{{period.start_time}} - {{period.end_time}}</p>
+                                            </div>
+                                    </ion-item>
+                                </div>
+                            </div>
+                        </ion-list>
+                    </ion-content>
+                </ion-view>
+        </ion-nav-view>
+    </div>
+</ion-view>

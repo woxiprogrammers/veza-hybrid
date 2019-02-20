@@ -1,0 +1,102 @@
+<ion-view view-title="View Attendance" name="viewattendance" class="touch-effect">
+    <div class="row padding-0">
+        <div class="tabs-striped tabs-color-positive tabs-top">
+            <div class="tabs tab-align-inner">
+                <a class="tab-item margin-top-0">
+                    <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.notification">
+                    <i class="icon ion-notify"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+                    <i class="icon ion-homie"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.message">
+                    <i class="icon ion-message"><span class="badge badge-assertive"></span></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="bar bar-orange bar-header align-delete-bar">
+        <iion-item class="row">
+            <div class="row">
+                <div class="col-10">
+                    <button class="button-clear" ng-click="myGoBack()">
+                        <i class="ion-arrow-left-c button-back-white"></i>
+                    </button>
+                </div>
+                <div class="col-90 margin-top-5">
+                    <span class="inner-header">View Attendance</span>
+                </div>
+            </div>
+        </iion-item>
+    </div>
+    <div class="row margin-top-100 no-border">
+    <div class="row" ng-if="userRole == 'teacher'">
+        <div class="col-33 border-bottom">
+            <select class="item item-input item-select" ng-model="selectedBatch.batch" ng-options="batch.name for batch in batches track by batch.id" ng-change="getClass(selectedBatch.batch.id)">
+                <option value="" ng-disabled="true">Select Batch</option>
+            </select>
+        </div>
+        <div class="col-33 border-right border-bottom">
+            <select class="item item-input item-select" ng-model="selectedClass.class" ng-options="class.class_name for class in classes track by class.id" ng-change="getDivision(selectedClass.class.id)">
+                <option value="" ng-disabled="true">-Select Class</option>
+            </select>
+        </div>
+        <div class="col-33 border-bottom">
+            <select class="item item-input item-select" ng-model="selectedDivision.division" ng-options="division.division_name for division in divisions track by division.id" ng-change="getAttendanceList(selectedDivision.division.id)">
+                <option value="" ng-disabled="true">Select Division</option>
+            </select>
+        </div>
+    </div>
+    <div ng-if="userRole == 'parent'">
+        <span class="red-font">* Dot represents Absent date.</span>
+    </div>
+    </div>
+    <ion-content ng-class="{expanded:$scope.isExpanded}" class="padding-l-r-5 top-142">
+        <flex-calendar options="options" events="events"></flex-calendar>
+      <ion-list>
+	    <div class="row col-offset-33 col-33"><i class="icon ion-chevron-down margin-left-50"></i></div>
+        <div ng-repeat="student in selectedDateData">
+            <div ng-if="userRole == 'teacher'">
+                <div class="row">
+                    <div class="item">
+                        <h2>{{student.roll_number}} {{student.name}}</h2>
+                        <p ng-if="student.leave_status != 0">
+                            <div ng-if="student.leave_status == 1">
+                                <span class="blue-font">Leave Applied On:</span> {{student.applied_on}}
+                            </div>
+                            <div ng-if="student.leave_status == 2">
+                                <span class="blue-font">Leave Applied On:</span> {{student.applied_on}}
+                                <br>
+                                <span class="green-font">Leave Approved On:</span> {{student.approved_at}}
+                            </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="userRole == 'parent'">
+                <div class="row">
+                    <div class="item">
+                        <span class="red-font">{{selectedDateMessage}}</span>
+                        <p ng-if="student.leaveStatus != 0">
+                            <div ng-if="student.leaveStatus == 1">
+                                <span class="blue-font">Leave Applied On:</span> {{student.applied_on}}
+                                <br>
+                                <span class="red-font">Leave Not Approved</span>
+                            </div>
+                            <div ng-if="student.leaveStatus == 2">
+                                <span class="blue-font">Leave Applied On:</span> {{student.applied_on}}
+                                <br>
+                                <span class="green-font">Leave Approved On:</span> {{student.approved_at}}
+                                <br>
+                                <span class="blue-font">Leave Approved By:</span> {{student.approved_by}}
+                            </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-list>
+    </ion-content>
+</ion-view>

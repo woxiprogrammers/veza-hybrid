@@ -1,0 +1,78 @@
+<ion-view view-title="Detail View" name="detailspage" class="touch-effect">
+    <div class="row padding-0">
+        <div class="tabs-striped tabs-color-positive tabs-top">
+            <div class="tabs tab-align-inner">
+                <a class="tab-item margin-top-0">
+                    <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.notification">
+                    <i class="icon ion-notify"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+                    <i class="icon ion-homie"></i>
+                </a>
+                <a class="tab-item margin-top-10">
+                    <i class="icon ion-message">
+                        <span class="badge badge-assertive"></span>
+                    </i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="bar bar-grey bar-header align-delete-bar">
+        <iion-item class="row">
+            <div class="row">
+                <div class="col-10" ng-click="myGoBack()">
+                    <button class="button-clear">
+                        <i class="ion-arrow-left-c button-back-white"></i>
+                    </button>
+                </div>
+                <div class="col-75 margin-top-5">
+                    <span class="inner-header"></span>
+                </div>
+                <div>
+                    <a>
+                        <i class="icon ion-edit" style="font-size:30px;color:white" ng-repeat="achievementDetail in DetailAchievemtns" ng-if="achievementDetail.status == 0"
+                            ng-click="editAchievment()"></i>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <a>
+                    <i class="icon ion-trash-b align-delete-bin" ng-repeat="achievementDetail in DetailAchievemtns" ng-if="achievementDetail.status == 0"
+                        style="font-size:35px" ng-click="deleteAchievement({{achievementDetail.id}})"></i>
+                </a>
+            </div>
+    </div>
+
+    </iion-item>
+    </div>
+    <ion-content ng-class="{expanded:$scope.isExpanded}" padding="true">
+        <br>
+        <br>
+        <div class="card" ng-repeat="achievementDetail in DetailAchievemtns">
+            <h3 style="text-transform:capitalize;text-align:center;text-shadow: 2px 1px #72f9ea;">{{achievementDetail.title}}</h3>
+            <div class="row margin-top-5">
+                <c class="bold creator-font">{{achievementDetail.createdBy['first_name']}} {{achievementDetail.createdBy['last_name']}}</c>
+            </div>
+            <div class="row bold">
+                <time class="creator-time-font"> {{achievementDetail.created_at}}</time>
+            </div>
+            <ion-slide-box>
+                <ion-slide ng-if="images.image" ng-repeat="images in imageData">
+                    <div class="card margin-top-20">
+                        <img src="{{achievementDetail.path}}/uploads/achievement/events/{{achievementDetail.id}}/{{images.image}}" height="150px"
+                            width="100%">
+                    </div>
+                </ion-slide>
+            </ion-slide-box>
+            <br>
+            <div style="margin:10px;word-wrap: break-word;">
+                <p style="text-align:justify">
+                    <h4>{{achievementDetail.detail}}
+                        <h4>
+                </p>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

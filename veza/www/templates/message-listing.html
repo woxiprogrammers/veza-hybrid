@@ -1,0 +1,49 @@
+<ion-view view-title="Message" name="message" class="touch-effect">
+    <div class="row padding-0">
+        <div class="tabs-striped tabs-color-positive tabs-top">
+            <div class="tabs tab-align-inner">
+                <a class="tab-item margin-top-0">
+                    <i class="icon ion-android-menu slide-button" ng-click="toggleLeftSideMenu()"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.notification">
+                    <i class="icon ion-notify"></i>
+                </a>
+                <a class="tab-item margin-top-10" ui-sref="app.dashboard">
+                    <i class="icon ion-homie"></i>
+                </a>
+                <a class="tab-item margin-top-10 active" ui-sref="app.message">
+                    <i class="icon ion-message"><span class="badge badge-assertive">{{msgCount}}</span></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="bar bar-cool bar-header align-delete-bar">
+        <iion-item class="row">
+            <div class="row">
+                <div class="col-75 margin-top-5">
+                    <span class="inner-header">Messages</span>
+                </div>
+                <div class="col-25">
+                    <!--<a><i class="icon ion-trash-b align-delete-bin"></i></a>-->
+                </div>
+            </div>
+        </iion-item>
+    </div>
+    <ion-content ng-class="{expanded:$scope.isExpanded}" class="margin-top-48 padding-l-r-5">
+        <ion-list>
+            <ion-item class="notify-item-border" ng-repeat="nMsg in nMessages">
+                    <div class="row">
+                        <div class="col-75 msg-{{nMsg.read_status}}">
+                            <a ng-class='{ disabled: clickStatus}' ng-click="clickStatus || msgDetails(nMsg.from_id, nMsg.to_id, nMsg.title, nMsg.title_id)" class="text-decoration-none">
+                            <h2><strong>{{nMsg.title}}</strong></h2>
+                            <p>{{nMsg.description}}<br><strong><i class="font-italic">{{nMsg.timestamp}}</i></strong></p>
+                            </a>
+                        </div>
+                        <div class="col-25"  ng-click="clickStatus || confirmDelete(nMsg.from_id, nMsg.to_id)">
+                            <a><i class="icon ion-trash-b delete-msg" class='{ display-no: clickStatus}'></i></a>
+                        </div>
+                    </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
