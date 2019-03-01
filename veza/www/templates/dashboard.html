@@ -2,7 +2,8 @@
     <div class="row">
         <div class="col-90 col-offset-r-10 bar-header">
             <img class="title-image float-left" src="img/school-logo.png" />
-            <h1 class="header-title">{{title}}</h1>
+            <!-- <h1 class="header-title">{{title}}</h1> -->
+            <h1 class="header-title">School Name</h1>
         </div>
     </div>
     <div ng-show='{{loading}}' style="background-color:black;height:50px;">
@@ -94,6 +95,6 @@
         </ion-scroll>
     </ion-content>
     <div class="bar bar-footer footer-bottom">
-        <div class="footer-title">Powered by Veza Version 1.9</div>
+        <div class="footer-title">Powered by Veza Version {{version}}</div>
     </div>
 </ion-view>

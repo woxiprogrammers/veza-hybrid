@@ -4,11 +4,9 @@
 var db = null;
 angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-material', 'ngCordova'])
     .constant('GLOBALS', {
-        // baseUrl:'http://sspss.veza.co.in/api/v1/',
-        // baseUrlImage: 'http://sspss.veza.co.in/',
-        versionCode: 1.9,
-        baseUrl: 'http://sspss_test.woxi.co.in/api/v1/',
-        baseUrlImage: 'http://sspss_test.woxi.co.in/'
+        versionCode: 1.9,        
+        baseUrl: 'http://erp.veza.co.in/api/v1/',
+        baseUrlImage: 'http://erp.veza.co.in'
     })
 
     .factory('Data', function () {
@@ -170,7 +168,8 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
                 $scope.studentdataswitch = (response['data']['Parent_student_relation']['Students']);
             })
                 .error(function (response) {
-                    console.log("Error in Response: " + response);
+                    console.log("Error in Response: ");
+                    console.log(response)
                 });
         }
         $scope.studentlistForSwitch();
@@ -376,11 +375,12 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
 
     .controller('tokencheckCtr', function ($rootScope, $window, $ionicPopup, userData, $http, GLOBALS, $state, $scope, $stateParams, userSessions, $timeout, ionicMaterialInk, ionicMaterialMotion) {
         var url = GLOBALS.baseUrl + "user/minimum-supported-version";
-        $http.get(url).success(function(response){
-            $scope.data = response.data;
-            $rootScope.minimumAppVersion = $scope.data.minimum_app_version;
-            if(GLOBALS.versionCode >= $scope.minimumAppVersion){
-                $scope.versionCode
+        // $http.get(url).success(function(response){
+        //     $scope.data = response.data;
+        //     $rootScope.minimumAppVersion = $scope.data.minimum_app_version;
+        //     if(GLOBALS.versionCode >= $scope.minimumAppVersion){
+        //         $scope.versionCode
+        $rootScope.minimumAppVersion = 1.0
                 $scope.tokenData = localStorage.getItem('appToken');
                 $scope.sessionUserRole = localStorage.getItem('sessionUserRole');
                 $scope.messageCount = localStorage.getItem('messageCount');
@@ -409,13 +409,13 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
                 else {
                     $state.go('selectschool');
                 }
-            } else {
-                $state.go('selectschool');
-                $scope.showAlert();
-            }
-        }).error(function(response){
-            console.log(response)
-        })
+        //     } else {
+        //         $state.go('selectschool');
+        //         $scope.showAlert();
+        //     }
+        // }).error(function(response){
+        //     console.log(response)
+        // })
         $scope.showAlert = function () {
             var alertPopup = $ionicPopup.alert({
                 title: "You are on older version of the app",
@@ -423,6 +423,69 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
             });
         }
     })
+
+    .controller('app.PublicNoticeboard', function ($ionicHistory, $rootScope, userSessions, GLOBALS, $http, $scope, $state, $timeout, ionicMaterialInk, $ionicSideMenuDelegate, $ionicLoading) {
+        $scope.myGoBack = function () {
+            $state.go('publicDashboard')
+        };
+        $scope.$parent.clearFabs();
+        $scope.isExpanded = false;
+        $scope.$parent.setExpanded(false);
+        $scope.$parent.setHeaderFab(false);
+        // Set Header
+        $scope.$parent.hideHeader();
+        // Set Ink
+        ionicMaterialInk.displayEffect();
+        //Side-Menu
+        $ionicSideMenuDelegate.canDragContent(false);
+
+        $ionicLoading.show({
+            template: 'Loading...',
+        })
+        $ionicLoading.show();
+        $scope.achievementDetail = function (id) {
+            $rootScope.DetailAchievemtns = [];
+            angular.forEach($scope.nmessages, function (data) {
+                if (data.id == id) {
+                    $rootScope.DetailAchievemtns.push(data);
+                }
+            })
+            $rootScope.imagesData = [];
+            angular.forEach($scope.imageData, function (dataa) {
+                angular.forEach(dataa, function (dataImage) {
+                    if (dataImage.event_id == id) {
+                        $rootScope.imagesData.push(dataImage);
+                    }
+                })
+            })
+            $state.go('app.achievementdetailspublic');
+        };
+        var url = GLOBALS.baseUrl + "user/view-achievement-parent";
+        $http.post(url, { body_id: $rootScope.organisationID, _method: 'POST' })
+            .success(function (response) {
+                if (response['status'] == 200) {
+                    $ionicLoading.hide();
+                    $scope.nmessages = response['data'];
+                } else {
+                    $scope.responseMessage = response['message'];
+                    $scope.showPopup();
+                }
+            }).error(function (err) {
+                $scope.responseMessage = "You do not have permission,please contact admin!!!";
+                $scope.showPopup();
+            });
+        $scope.checkAll = function () {
+            if ($scope.selectedAll) {
+                $scope.selectedAll = true;
+            } else {
+                $scope.selectedAll = false;
+            }
+            angular.forEach($scope.nmessages, function (nmsg) {
+                nmsg.Selected = $scope.selectedAll;
+            });
+        };
+    })
+
 
     .controller('GalleryCtrl', function ($ionicBackdrop, $ionicModal, $ionicSlideBoxDelegate, $ionicScrollDelegate, $ionicHistory, $rootScope, $ionicPush, myservice, $scope, $state, $ionicLoading, $http, $timeout, ionicMaterialInk, $cordovaSQLite, GLOBALS, $ionicPopup, userSessions, userData) {
         $scope.baseImageURL = GLOBALS.baseUrlImage
@@ -533,8 +596,25 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
 
     .controller('LoginCtrl', function ($ionicHistory, $rootScope, $ionicPush, myservice, $scope, $state, $ionicLoading, $http, $timeout, ionicMaterialInk, $cordovaSQLite, GLOBALS, $ionicPopup, userSessions, userData) {
         $scope.goBackToSelectSchool = function () {
-            $state.go('selectschool')
+            $state.go('publicDashboard')
         };
+        $scope.register = function () {
+            window.FirebasePlugin.getToken(function (token) {
+                // save this server-side and use it to push notifications to this device
+                $rootScope.pushToken = token;
+                $scope.saveToken();
+            }, function (error) {
+                console.error(error);
+            });
+        }
+
+        $scope.saveToken = function () {
+            var url = GLOBALS.baseUrl + "user/save-push?token=" + res['data']['users']['token'];
+            $http.post(url, { pushToken: $rootScope.pushToken, user_id: res['data']['Badge_count']['user_id'] }).success(function (response) {
+            }).error(function (err) {
+                console.log(err)
+            });
+        }
         $scope.data = [];
         ionicMaterialInk.displayEffect();
         
@@ -549,23 +629,7 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
                 $scope.data.message = res['message'];
 
                 // FCM Token is generated here
-                $scope.register = function () {
-                    window.FirebasePlugin.getToken(function (token) {
-                        // save this server-side and use it to push notifications to this device
-                        $rootScope.pushToken = token;
-                        $scope.saveToken();
-                    }, function (error) {
-                        console.error(error);
-                    });
-                }
-
-                $scope.saveToken = function () {
-                    var url = GLOBALS.baseUrl + "user/save-push?token=" + res['data']['users']['token'];
-                    $http.post(url, { pushToken: $rootScope.pushToken, user_id: res['data']['Badge_count']['user_id'] }).success(function (response) {
-                    }).error(function (err) {
-                        console.log(err)
-                    });
-                }
+                
                 if (res['status'] == 200) {
                     $scope.register();
                     $scope.studentlist = (res.data['users']);
@@ -625,6 +689,7 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
     })
 
     .controller('DashboardCtrl', function ($rootScope, $ionicPlatform, $ionicPush, $scope, $state, $ionicLoading, $ionicPopup, $timeout, GLOBALS, $http, ionicMaterialInk, ionicMaterialMotion, $ionicSideMenuDelegate, $cordovaSQLite, userSessions, userData) {
+        $scope.version = GLOBALS.versionCode;
         $scope.$on("$ionicView.beforeEnter", function (event, data) {
             $ionicLoading.show({
                 template: 'Loading...',
@@ -3361,7 +3426,6 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
         };
         $scope.recentEvent();
     })
-    // .controller('app.PublicNoticeboard', function ($ionicHistory, $rootScope, userSessions, GLOBALS, $http, $scope, $state, $timeout, ionicMaterialInk, $ionicSideMenuDelegate, $ionicLoading) {
 
     .controller('app.PublicAchievementCtrl', function ($ionicHistory, $rootScope, userSessions, GLOBALS, $http, $scope, $state, $timeout, ionicMaterialInk, $ionicSideMenuDelegate, $ionicLoading) {
         $scope.myGoBack = function () {
@@ -5325,7 +5389,8 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
         function (
             $scope,
             $state,
-            $rootScope
+            $rootScope,
+            $ionicPopup
         ) {
             $scope.goBackToSelectSchool = function () {
                 $rootScope.organisationID = 0;
@@ -5342,6 +5407,15 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
             }
             $scope.goToPublicAboutUsLanding = function () {
                 $state.go("publicAboutUs")
+            }
+            $scope.showAlert = function () {
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Under construction!',
+                    template: 'To be released soon..! '
+                });
+            }
+            $scope.goToLogin = function () {
+                $state.go('login');
             }
         })
 
@@ -5623,10 +5697,10 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
             $ionicScrollDelegate.scrollTop();
             $ionicLoading.show({
                 template: 'Loading...',
-                duration: 1500
             });
             var url = GLOBALS.baseUrl + "user/gallery-image/" + $scope.folderID;
             $http.get(url).success(function (response) {
+                $ionicLoading.hide();
                 if (response['status'] == 200) {
                     $scope.folderName = response.data[0].name;
                     $scope.imagesLength = response.data[0].photos.length
@@ -5653,7 +5727,6 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
             }
             $ionicLoading.show({
                 template: 'Loading...',
-                duration: 1500
             })
             $scope.myGoBack = function () {
                 $state.go('publicGallary')

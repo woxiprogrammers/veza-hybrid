@@ -1,14 +1,19 @@
 <ion-view view-title="Login" align-title="left" class="touch-effect login-bg-col no-scroll">
-    <ion-content class="no-scroll" style="background: url(img/login.jpg) center; background-size: cover;">
-        <button class="button button-small button-assertive pull-right" style="margin-top:50px;height:10px;" ng-click="goToLogin()">
+    <!-- <ion-content class="no-scroll" style="background: url(img/login.jpg) center; background-size: cover;"> -->
+    <ion-content class="no-scroll" style="background-image: linear-gradient( #d7d2cc,#304352)">
+        <!-- <button class="button button-small button-assertive pull-right" style="margin-top:50px;height:10px;" ng-click="goToLogin()">
             login
-        </button>
- <div class="hero flat no-scroll" style="height:40%" >
-            <div class="logo-align" >
-                <div><img class="login-image" src="img/school-logo.png"/></div>
-                <h3>SSPSS</h3>
+        </button> -->
+        <div class="hero flat no-scroll" >
+            <div class="logo-align">
+              <div>
+                <img class="login-image" src="img/school-logo.png" />
+              </div>
+             
             </div>
-        </div>
+          </div>
+          <h3 class="center-screen title-app" >VEZA</h3>
+          <h4 class="center-screen title-app">Communication Made Easy</h4>
         <select ng-model="school_id" ng-change="getSchoolDetails(school_id)" style="margin-top:55px;width:100%;height:50px;background-color:white;">
             <option value="" selected>Select School</option>
             <option value="1">GIS, Chikhali</option>
@@ -17,7 +22,7 @@
         <h3 style="color:red;">{{errorMessage}}</h3>
         <br>
         <br>
-        <button class="button button-small icon-right ion-chevron-right button-assertive pull-right" ng-click="goToPublicDashboard()"
-            style="margin-top:20px">next</button>
+        <button class="button button-small icon-right ion-chevron-right button-assertive buttonCentered" ng-click="goToPublicDashboard()"
+            style="margin-top:50%">next</button>
     </ion-content>
 </ion-view>
