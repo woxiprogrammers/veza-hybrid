@@ -375,12 +375,11 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
 
     .controller('tokencheckCtr', function ($rootScope, $window, $ionicPopup, userData, $http, GLOBALS, $state, $scope, $stateParams, userSessions, $timeout, ionicMaterialInk, ionicMaterialMotion) {
         var url = GLOBALS.baseUrl + "user/minimum-supported-version";
-        // $http.get(url).success(function(response){
-        //     $scope.data = response.data;
-        //     $rootScope.minimumAppVersion = $scope.data.minimum_app_version;
-        //     if(GLOBALS.versionCode >= $scope.minimumAppVersion){
-        //         $scope.versionCode
-        $rootScope.minimumAppVersion = 1.0
+        $http.get(url).success(function(response){
+            $scope.data = response.data;
+            $rootScope.minimumAppVersion = $scope.data.minimum_app_version;
+            if(GLOBALS.versionCode >= $scope.minimumAppVersion){
+                $scope.versionCode
                 $scope.tokenData = localStorage.getItem('appToken');
                 $scope.sessionUserRole = localStorage.getItem('sessionUserRole');
                 $scope.messageCount = localStorage.getItem('messageCount');
@@ -409,13 +408,13 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
                 else {
                     $state.go('selectschool');
                 }
-        //     } else {
-        //         $state.go('selectschool');
-        //         $scope.showAlert();
-        //     }
-        // }).error(function(response){
-        //     console.log(response)
-        // })
+            } else {
+                $state.go('selectschool');
+                $scope.showAlert();
+            }
+        }).error(function(response){
+            console.log(response)
+        })
         $scope.showAlert = function () {
             var alertPopup = $ionicPopup.alert({
                 title: "You are on older version of the app",
