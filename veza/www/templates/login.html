@@ -1,8 +1,9 @@
-<ion-view view-title="Login" align-title="left" class="touch-effect login-bg-col no-scroll">
-    <ion-content class="no-scroll" style="background-image: linear-gradient( #d7d2cc,#304352)">
+<ion-view style="background: white; background-size: cover; margin-bottom: 20%" ng-class="{expanded:isExpanded}" view-title="Login" align-title="left" class="touch-effect login-bg-col no-scroll">
+    <!-- <ion-content class="no-scroll" style="background-image: linear-gradient( #d7d2cc,#304352)"> -->
+            <ion-content class="no-scroll">
       <div class="col-10"  ng-click="goBackToSelectSchool()">
           <button class="button-clear">
-              <i class="ion-arrow-left-c button-back-white"></i>
+                <i style=" font-size: 30px" class="ion-arrow-left-c button-back-black"></i>
           </button>
       </div>
       <div class="hero flat no-scroll" >
@@ -16,9 +17,9 @@
       <h3 class="center-screen title-app" >VEZA</h3>
       <h4 class="center-screen title-app">Communication Made Easy</h4>
         <div>
-          <h3 style="color:yellow;">{{error}}</h3>
+          <h3 style="color:red;">{{error}}</h3>
         </div>
-        <div class="children no-scroll" style="margin-top:50px;">
+        <div class="children no-scroll" style="margin-top:50p;">
             <form name="myForm" novalidate>
                 <div class="padding">
                     <div class="list">
@@ -28,7 +29,6 @@
                         <label class="item item-input">
                             <input type="password" name="password" ng-model="password" placeholder="Password">
                         </label>
-
                     </div>
                     <button class="button button-full button-assertive ink" ng-click="submit(email, password)" tabindex="3">Login</button>
                 </div>

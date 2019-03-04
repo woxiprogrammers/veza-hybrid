@@ -4,7 +4,7 @@
 var db = null;
 angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-material', 'ngCordova'])
     .constant('GLOBALS', {
-        versionCode: 1.9,        
+        versionCode: 1.0,        
         baseUrl: 'http://erp.veza.co.in/api/v1/',
         baseUrlImage: 'http://erp.veza.co.in'
     })
