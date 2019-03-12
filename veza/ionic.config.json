@@ -1,5 +1,5 @@
 {
-  "name": "GEMS",
+  "name": "Veza CME",
   "integrations": {
     "gulp": {},
     "cordova": {}
@@ -11,5 +11,5 @@
     "!www/lib/**/*",
     "!www/**/*.map"
   ],
-  "id": "7c6f7241"
+  "id": ""
 }
