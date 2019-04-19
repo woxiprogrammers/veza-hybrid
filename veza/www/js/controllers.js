@@ -489,7 +489,9 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
     .controller('GalleryCtrl', function ($ionicBackdrop, $ionicModal, $ionicSlideBoxDelegate, $ionicScrollDelegate, $ionicHistory, $rootScope, $ionicPush, myservice, $scope, $state, $ionicLoading, $http, $timeout, ionicMaterialInk, $cordovaSQLite, GLOBALS, $ionicPopup, userSessions, userData) {
         $scope.baseImageURL = GLOBALS.baseUrlImage
         var url = GLOBALS.baseUrl + "user/folder-first-image/" + userSessions.userSession.bodyId + "?token=" + userSessions.userSession.userToken;
+        $ionicLoading.show();
         $http.get(url).success(function (response) {
+            $ionicLoading.hide();
             if (response.status == 200) {
                 $scope.folders_size = response.data.folder_list.length;
                 if ($scope.folders_size > 0) {
@@ -523,10 +525,10 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
         $ionicScrollDelegate.scrollTop();
         $ionicLoading.show({
             template: 'Loading...',
-            duration: 1500
         });
         var url = GLOBALS.baseUrl + "user/gallery-image/" + $scope.folderID + "?token=" + userSessions.userSession.userToken
         $http.get(url).success(function (response) {
+            $ionicLoading.hide();
             if (response['status'] == 200) {
                 $scope.folderName = response.data[0].name;
                 $scope.imagesLength = response.data[0].photos.length
@@ -608,10 +610,20 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
         }
 
         $scope.saveToken = function () {
-            var url = GLOBALS.baseUrl + "user/save-push?token=" + res['data']['users']['token'];
-            $http.post(url, { pushToken: $rootScope.pushToken, user_id: res['data']['Badge_count']['user_id'] }).success(function (response) {
+            var url = GLOBALS.baseUrl + "user/save-push?token=" + $scope.sessionToken;
+            $ionicLoading.show();
+            console.log($rootScope.pushToken);
+            console.log($scope.sessionId);
+            $http.post(url, { 
+                pushToken: $rootScope.pushToken,
+                user_id: $scope.sessionId
+            }).success(function (response) {
+                $ionicLoading.hide();
+                console.log("token saved");
             }).error(function (err) {
+                $ionicLoading.hide();
                 console.log(err)
+                console.log("token not saved");
             });
         }
         $scope.data = [];
@@ -1031,6 +1043,7 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
             });
         $scope.getClass = function (batch) {
             var url = GLOBALS.baseUrl + "user/get-classes/" + batch + "?token=" + userSessions.userSession.userToken;
+            console.log(url);
             $http.get(url).success(function (response) {
                 $scope.classList = response['data'];
                 $scope.className = 'Class';
@@ -1043,6 +1056,7 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
         };
         $scope.getStudentList = function (divType) {
             var url = GLOBALS.baseUrl + "user/get-students-list/" + divType + "?token=" + userSessions.userSession.userToken;
+            console.log(url);
             $http.get(url)
                 .success(function (response) {
                     $scope.contactList = response['data']['studentList'];
@@ -1054,6 +1068,7 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
         };
         $scope.getAdminList = function () {
             var url = GLOBALS.baseUrl + "user/get-admin-list/" + "?token=" + userSessions.userSession.userToken;
+            console.log(url);
             $http.get(url)
                 .success(function (response) {
                     $scope.adminList = response;
@@ -1065,6 +1080,7 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
         };
         $scope.getTeacherList = function () {
             var url = GLOBALS.baseUrl + "user/get-teacher-list/" + "?token=" + userSessions.userSession.userToken;
+            console.log(url);
             $http.get(url)
                 .success(function (response) {
                     $scope.teacherList = response;
@@ -1132,6 +1148,7 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
                 teacherrr: $scope.selectedListTeacher,
                 adminnn: $scope.selectedListAdmin
             };
+            console.log("students: "+$scope.selectedList +" Teachers: "+$scope.selectedListTeacher+" Admin: "+ $scope.selectedListAdmin+" Priority: "+$scope.priority);
             $http.post(url, dataObj).success(function (response) {
                 var message = response['message'];
                 $state.go('app.sharedNotification');
@@ -5643,7 +5660,9 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
         ) {
             $scope.baseImageURL = GLOBALS.baseUrlImage
             var url = GLOBALS.baseUrl + "user/folder-first-image/" + $rootScope.organisationID;
+            $ionicLoading.show();
             $http.get(url).success(function (response) {
+                $ionicLoading.hide();
                 if (response.status == 200) {
                     $scope.folders_size = response.data.folder_list.length;
                     if ($scope.folders_size > 0) {
@@ -5656,6 +5675,8 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
                 }
 
             }).error(function (err) {
+                $ionicLoading.hide();
+                console.log(err);
             });
             $scope.showAlertsucess = function (message) {
                 var alertPopup = $ionicPopup.alert({
