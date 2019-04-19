@@ -839,6 +839,18 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'ngCor
                     }
                 }
             })
+            .state('app.announcementPublic', {
+                url: '/announcementPublic',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/public-announcement.html',
+                        controller: 'app.PublicAnnouncementCtrl'
+                    },
+                    'fabContent': {
+                        template: ''
+                    }
+                }
+            })
             .state('app.achievementdetailspublic', {
                 url: '/achievementdetailspublic',
                 views: {

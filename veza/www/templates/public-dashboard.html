@@ -1,6 +1,6 @@
 <ion-view view-title="Login" align-title="left" class="touch-effect login-bg-col no-scroll">
-  <ion-content class="scroll" style="background: white; background-size: cover; margin-bottom: 20%" ng-class="{expanded:isExpanded}"
-    overflow-scroll="true">
+  <ion-content class="scroll" style="background: white; background-size: cover; margin-bottom: 20%"
+    ng-class="{expanded:isExpanded}" overflow-scroll="true">
     <div class="col-10" ng-click="goBackToSelectSchool()">
       <button class="button-clear">
         <i style=" font-size: 30px" class="ion-arrow-left-c button-back-black"></i>
@@ -12,53 +12,59 @@
           </div>
         </div>
       </ion-grid> -->
-      <div class="hero flat no-scroll" >
-        <div class="logo-align">
-          <div>
-            <img class="login-image" src="img/school-logo.png" />
+    <div class="hero flat no-scroll">
+      <div class="logo-align">
+        <div>
+          <img class="login-image" src="img/school-logo.png" />
+        </div>
+
+      </div>
+    </div>
+    <h3 class="center-screen title-app">VEZA</h3>
+    <h4 class="center-screen title-app">Communication Made Easy</h4>
+    <div class="public-dashboard  margin-bottom-10" style="overflow-y: true;">
+      <div class="row">
+        <div class="a col-33">
+          <div class="full-width padding-bottom-text">
+            <img class="dashboard-icon" src="img/1_announcement_shadow.png" ng-click="goToPublicAchievementLanding()" />
           </div>
-         
+          <span class="full-width dashboard-text">Announcement</span>
+        </div>
+        <div class="a col-33">
+          <div class="full-width padding-bottom-text">
+            <img class="dashboard-icon" src="img/achievement_icon.png" ng-click="goToPublicAnnouncementLanding()" />
+          </div>
+          <span class="full-width dashboard-text">Achievement</span>
+        </div>
+        <div class="a col-33">
+          <div class="full-width padding-bottom-text">
+            <img class="dashboard-icon" src="img/gallery.png" ng-click="goToPublicGalleryLanding()" />
+          </div>
+          <span class="full-width dashboard-text">Gallery</span>
         </div>
       </div>
-      <h3 class="center-screen title-app">VEZA</h3>
-      <h4 class="center-screen title-app">Communication Made Easy</h4>
-    <div class="public-dashboard  margin-bottom-10" style="overflow-y: true;">
+      <div>
         <div class="row">
-            <div class="a col-33">
-              <div class="full-width padding-bottom-text">
-                <img class="dashboard-icon" src="img/1_announcement_shadow.png" ng-click="goToPublicAchievementLanding()" />
-              </div>
-                <span class="full-width dashboard-text">Notice Board</span>
+          <div class="a col-33">
+            <div class="full-width padding-bottom-text">
+              <img class="dashboard-icon" src="img/4_events_shadow.png" ng-click="goToPublicEventsLanding()" />
             </div>
-            <div class="a col-33">
-              <div class="full-width padding-bottom-text">
-                <img class="dashboard-icon" src="img/4_events_shadow.png" ng-click="goToPublicEventsLanding()" />
-              </div>
-              <span class="full-width dashboard-text">Events</span>
-            </div>
-            <div class="a col-33">
-              <div class="full-width padding-bottom-text">
-                <img class="dashboard-icon" src="img/gallery.png" ng-click="goToPublicGalleryLanding()" />
-              </div>
-              <span class="full-width dashboard-text">Gallery</span>
-            </div>
+            <span class="full-width dashboard-text">Events</span>
           </div>
-          <div>
-            <div class="row">
-              <div class="a col-33">
-                <div class="full-width padding-bottom-text">
-                  <img class="dashboard-icon" src="img/7_about_shadow.png" ng-click="showAlert()" />
-                </div>
-                  <span class="full-width dashboard-text">About Us</span>
-              </div>
-              <div class="a col-33">
-                <div class="full-width padding-bottom-text">
-                  <img class="dashboard-icon" src="img/school-logo.png" ng-click="goToLogin()" />
-                </div>
-                <span class="full-width dashboard-text">Login</span>
-              </div>
+          <div class="a col-33">
+            <div class="full-width padding-bottom-text">
+              <img class="dashboard-icon" src="img/7_about_shadow.png" ng-click="showAlert()" />
             </div>
+            <span class="full-width dashboard-text">About Us</span>
           </div>
+          <div class="a col-33">
+            <div class="full-width padding-bottom-text">
+              <img class="dashboard-icon" src="img/login-icon.png" ng-click="goToLogin()" />
+            </div>
+            <span class="full-width dashboard-text">Login</span>
+          </div>
+        </div>
+      </div>
     </div>
   </ion-content>
 </ion-view>

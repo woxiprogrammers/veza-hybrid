@@ -460,8 +460,11 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
             $state.go('app.achievementdetailspublic');
         };
         var url = GLOBALS.baseUrl + "user/view-achievement-parent";
-        $http.post(url, { body_id: $rootScope.organisationID, _method: 'POST' })
-            .success(function (response) {
+        $http.post(url, { 
+            body_id: $rootScope.organisationID,
+            event_type: 1,
+            _method: 'POST' }
+            ).success(function (response) {
                 if (response['status'] == 200) {
                     $ionicLoading.hide();
                     $scope.nmessages = response['data'];
@@ -5418,6 +5421,9 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
             $scope.goToPublicAchievementLanding = function () {
                 $state.go('app.achievementpublic')
             }
+            $scope.goToPublicAnnouncementLanding = function () {
+                $state.go('app.announcementPublic')
+            }
             $scope.goToPublicGalleryLanding = function () {
                 $state.go("publicGallary")
             }
@@ -5435,20 +5441,43 @@ angular.module('starter.controllers', ['naif.base64', 'ionic.cloud', 'ionic-mate
             }
         })
 
+    .controller('app.PublicAnnouncementCtrl', function(
+        $scope,
+        $http,
+        $ionicLoading,
+        GLOBALS,
+        $rootScope
+    ){
+        $ionicLoading.show();
+        var url = GLOBALS.baseUrl + "user/view-achievement-parent";
+        $http.post(url, { 
+            body_id: $rootScope.organisationID,
+            event_type: 2,
+            _method: 'POST' }
+            ).success(function (response) {
+                $ionicLoading.hide();
+                if (response['status'] == 200) {
+                    $scope.nmessages = response['data'];
+                } else {
+                    $scope.responseMessage = response['message'];
+                    $scope.showPopup();
+                }
+            }).error(function (err) {
+                $ionicLoading.hide();
+                $scope.responseMessage = "You do not have permission,please contact admin!!!";
+                $scope.showPopup();
+            });
+
+    })
+
     .controller('PublicEventCtr',
         function (
-            $ionicLoading,
             $ionicPopup,
             GLOBALS,
             $http,
-            userSessions,
             $scope,
             $state,
-            $filter,
             $timeout,
-            ionicMaterialInk,
-            $ionicSideMenuDelegate,
-            $stateParams,
             $rootScope
         ) {
             $scope.hidden = true;

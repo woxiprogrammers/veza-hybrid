@@ -1,0 +1,31 @@
+<ion-view view-title="Notification" name="sharedAchieve" class="touch-effect" hide-nav-bar="true"
+    hide-back-button="true">
+
+    <div class="bar bar-header bar-assertive">
+        <div class="col-10" ng-click="myGoBack()" style="padding-top:2%">
+            <button class="button-clear">
+                <i class="ion-arrow-left-c button-back-white" style="font-size:25px"></i>
+            </button>
+        </div>
+        <h1 class="title">Achievements</h1>
+    </div>
+    </div>
+    <ion-content ng-class="{expanded:$scope.isExpanded}" class="has-header">
+        <ion-list class="item item-text-wrap">
+            <ion-item class="card" style="background-color:white;padding:10px" ng-repeat="achievement in nmessages">
+                <center ng-if="achievement.status == 2">
+                    <h2 style="color:#8e2a2a;text-transform: capitalize;">{{achievement.title}}</h2>
+                </center>
+                <hr>
+                <p>
+                    <h4>{{achievement.detail}}</h4>
+                </p><br>
+                <h4><span style="color:#8e2a2a;">Created By :</span> {{achievement.createdBy['first_name']}}
+                    {{achievement.createdBy['last_name']}}<span style="color:#8e2a2a;"> On</span>
+                    {{achievement.created_at}}</h4>
+                <h4><span style="color:#8e2a2a;">Published By :</span> {{achievement.publishedBy['first_name']}}
+                    {{achievement.publishedBy['last_name']}}</h4>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
